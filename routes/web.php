@@ -1,31 +1,26 @@
 <?php
 
-use Laravel\Socialite\Facades\Socialite;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
-Route::get('/auth/redirect/google', function () {
-    return Socialite::driver('google')->redirect();
-});
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
 
-Route::get('/auth/callback/google', function () {
-    $googleUser = Socialite::driver('google')->stateless()->user();
+Route::view('/', 'welcome');
 
-    $user = User::updateOrCreate(
-        ['google_id' => $googleUser->getId()],
-        [
-            'name' => $googleUser->getName(),
-            'email' => $googleUser->getEmail(),
-            'avatar' => $googleUser->getAvatar(),
-        ]
-    );
+Route::view('dashboard', 'dashboard')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
-    Auth::login($user);
+Route::view('profile', 'profile')
+    ->middleware(['auth'])
+    ->name('profile');
 
-    return redirect('/dashboard');
-});
-
-// Ruta protegida del dashboard
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth');
+require __DIR__.'/auth.php';
