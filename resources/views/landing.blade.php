@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riquín - Fotografía gastronómica de alta gama</title>
+<x-app-layout>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
@@ -24,7 +20,7 @@
             --gray-light: rgba(255, 255, 255, 0.8);
         }
 
-        body {
+        .landing-wrapper {
             background: #000000;
             color: var(--white-primary);
             font-family: 'Montserrat', sans-serif;
@@ -34,7 +30,6 @@
             width: 100%;
         }
         
-        /* Prevenir selección de texto durante el arrastre */
         .no-select {
             user-select: none !important;
             -webkit-user-select: none !important;
@@ -42,8 +37,7 @@
             -ms-user-select: none !important;
         }
         
-        /* Textura sutil de fondo */
-        body::before {
+        .landing-wrapper::before {
             content: '';
             position: fixed;
             top: 0;
@@ -55,7 +49,6 @@
             z-index: -1;
         }
 
-        /* Efecto de partículas doradas */
         .gold-particles {
             position: absolute;
             top: 0;
@@ -77,67 +70,20 @@
             animation: float 8s infinite ease-in-out;
         }
         
-        .particle:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-        
-        .particle:nth-child(2) {
-            top: 40%;
-            left: 30%;
-            animation-delay: 1s;
-        }
-        
-        .particle:nth-child(3) {
-            top: 60%;
-            left: 15%;
-            animation-delay: 2s;
-        }
-        
-        .particle:nth-child(4) {
-            top: 80%;
-            left: 25%;
-            animation-delay: 3s;
-        }
-        
-        .particle:nth-child(5) {
-            top: 30%;
-            left: 70%;
-            animation-delay: 4s;
-        }
-        
-        .particle:nth-child(6) {
-            top: 50%;
-            left: 85%;
-            animation-delay: 5s;
-        }
-        
-        .particle:nth-child(7) {
-            top: 75%;
-            left: 75%;
-            animation-delay: 6s;
-        }
+        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 40%; left: 30%; animation-delay: 1s; }
+        .particle:nth-child(3) { top: 60%; left: 15%; animation-delay: 2s; }
+        .particle:nth-child(4) { top: 80%; left: 25%; animation-delay: 3s; }
+        .particle:nth-child(5) { top: 30%; left: 70%; animation-delay: 4s; }
+        .particle:nth-child(6) { top: 50%; left: 85%; animation-delay: 5s; }
+        .particle:nth-child(7) { top: 75%; left: 75%; animation-delay: 6s; }
         
         @keyframes float {
-            0% {
-                transform: translateY(0);
-                opacity: 0;
-            }
-            25% {
-                opacity: 0.3;
-            }
-            50% {
-                transform: translateY(-100px);
-                opacity: 0.6;
-            }
-            75% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(-200px);
-                opacity: 0;
-            }
+            0% { transform: translateY(0); opacity: 0; }
+            25% { opacity: 0.3; }
+            50% { transform: translateY(-100px); opacity: 0.6; }
+            75% { opacity: 0.3; }
+            100% { transform: translateY(-200px); opacity: 0; }
         }
 
         .hero {
@@ -149,37 +95,13 @@
             z-index: 1;
         }
 
-        /* Responsive para hero section */
-        @media screen and (max-width: 1200px) {
-            .hero {
-                padding: 5rem 4rem;
-            }
-        }
-
+        @media screen and (max-width: 1200px) { .hero { padding: 5rem 4rem; } }
         @media screen and (max-width: 992px) {
-            .hero {
-                padding: 4rem 3rem;
-                flex-direction: column;
-                gap: 4rem;
-            }
-            
-            .hero-content {
-                padding-right: 0;
-            }
+            .hero { padding: 4rem 3rem; flex-direction: column; gap: 4rem; }
+            .hero-content { padding-right: 0; }
         }
-
-        @media screen and (max-width: 768px) {
-            .hero {
-                padding: 3rem 2rem;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .hero {
-                padding: 2rem 1.5rem;
-                gap: 3rem;
-            }
-        }
+        @media screen and (max-width: 768px) { .hero { padding: 3rem 2rem; } }
+        @media screen and (max-width: 480px) { .hero { padding: 2rem 1.5rem; gap: 3rem; } }
 
         .hero-content {
             flex: 1;
@@ -190,7 +112,6 @@
             position: relative;
         }
         
-        /* Elemento decorativo */
         .hero-content::before {
             content: '';
             position: absolute;
@@ -202,11 +123,7 @@
             opacity: 0.4;
         }
         
-        @media screen and (max-width: 992px) {
-            .hero-content::before {
-                display: none;
-            }
-        }
+        @media screen and (max-width: 992px) { .hero-content::before { display: none; } }
 
         .hero-image {
             flex: 1;
@@ -236,35 +153,12 @@
             background: var(--gold-primary);
         }
 
-        /* Responsive para títulos */
-        @media screen and (max-width: 1200px) {
-            .hero-title {
-                font-size: 4.2rem;
-            }
-        }
-
-        @media screen and (max-width: 992px) {
-            .hero-title {
-                font-size: 3.8rem;
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .hero-title {
-                font-size: 3.2rem;
-            }
-        }
-
+        @media screen and (max-width: 1200px) { .hero-title { font-size: 4.2rem; } }
+        @media screen and (max-width: 992px) { .hero-title { font-size: 3.8rem; } }
+        @media screen and (max-width: 768px) { .hero-title { font-size: 3.2rem; } }
         @media screen and (max-width: 480px) {
-            .hero-title {
-                font-size: 2.5rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .hero-title::after {
-                width: 60px;
-                bottom: -0.8rem;
-            }
+            .hero-title { font-size: 2.5rem; margin-bottom: 1.5rem; }
+            .hero-title::after { width: 60px; bottom: -0.8rem; }
         }
 
         .professional {
@@ -290,30 +184,13 @@
             margin-bottom: 2.5rem;
         }
 
-        /* Responsive para botones */
         @media screen and (max-width: 768px) {
-            .hero-buttons {
-                gap: 1rem;
-            }
-            
-            .btn-upload, .btn-examples {
-                padding: 0.9rem 1.8rem;
-                font-size: 0.85rem;
-            }
+            .hero-buttons { gap: 1rem; }
+            .btn-upload, .btn-examples { padding: 0.9rem 1.8rem; font-size: 0.85rem; }
         }
-
         @media screen and (max-width: 480px) {
-            .hero-buttons {
-                flex-direction: column;
-                gap: 1rem;
-                width: 100%;
-            }
-            
-            .btn-upload, .btn-examples {
-                width: 100%;
-                padding: 0.85rem 1.5rem;
-                text-align: center;
-            }
+            .hero-buttons { flex-direction: column; gap: 1rem; width: 100%; }
+            .btn-upload, .btn-examples { width: 100%; padding: 0.85rem 1.5rem; text-align: center; }
         }
 
         .btn-upload {
@@ -334,9 +211,7 @@
             z-index: 1;
         }
         
-        .btn-upload i {
-            margin-right: 8px;
-        }
+        .btn-upload i { margin-right: 8px; }
 
         .btn-upload::before {
             content: '';
@@ -371,9 +246,7 @@
             overflow: hidden;
         }
         
-        .btn-examples i {
-            margin-right: 8px;
-        }
+        .btn-examples i { margin-right: 8px; }
 
         .btn-examples::before {
             content: '';
@@ -392,9 +265,7 @@
             box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
         }
         
-        .btn-examples:hover::before {
-            transform: translateX(100%);
-        }
+        .btn-examples:hover::before { transform: translateX(100%); }
 
         .simple-text {
             font-size: 0.9rem;
@@ -405,7 +276,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* NUEVO CÓDIGO PARA EL COMPARADOR DE IMÁGENES */
         .food-image-container {
             position: relative;
             width: 100%;
@@ -418,47 +288,16 @@
             touch-action: none;
         }
         
-        /* Responsive para contenedor de imágenes */
-        @media screen and (max-width: 1200px) {
-            .food-image-container {
-                height: 520px;
-            }
-        }
-
-        @media screen and (max-width: 992px) {
-            .food-image-container {
-                height: 480px;
-                max-width: 100%;
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .food-image-container {
-                height: 420px;
-            }
-        }
-
+        @media screen and (max-width: 1200px) { .food-image-container { height: 520px; } }
+        @media screen and (max-width: 992px) { .food-image-container { height: 480px; max-width: 100%; } }
+        @media screen and (max-width: 768px) { .food-image-container { height: 420px; } }
         @media screen and (max-width: 480px) {
-            .food-image-container {
-                height: 380px;
-            }
-            
-            .before-label, .after-label {
-                font-size: 0.7rem;
-                padding: 0.4rem 0.9rem;
-                bottom: 15px;
-            }
-            
-            .before-label {
-                left: 15px;
-            }
-            
-            .after-label {
-                right: 15px;
-            }
+            .food-image-container { height: 380px; }
+            .before-label, .after-label { font-size: 0.7rem; padding: 0.4rem 0.9rem; bottom: 15px; }
+            .before-label { left: 15px; }
+            .after-label { right: 15px; }
         }
         
-        /* Efecto de esquinas doradas */
         .food-image-container::before, 
         .food-image-container::after {
             content: '';
@@ -471,45 +310,13 @@
             pointer-events: none;
         }
         
-        .food-image-container::before {
-            top: 10px;
-            left: 10px;
-            border-top: 1px solid;
-            border-left: 1px solid;
-        }
-        
-        .food-image-container::after {
-            bottom: 10px;
-            right: 10px;
-            border-bottom: 1px solid;
-            border-right: 1px solid;
-        }
+        .food-image-container::before { top: 10px; left: 10px; border-top: 1px solid; border-left: 1px solid; }
+        .food-image-container::after { bottom: 10px; right: 10px; border-bottom: 1px solid; border-right: 1px solid; }
 
-        /* Nuevo comparador de imágenes basado en clip-path */
-        .img-comp-container {
-            position: relative;
-            height: 100%;
-            width: 100%;
-        }
-
-        .img-comp-img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .img-comp-img img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* La segunda imagen (después) estará debajo */
-        .img-comp-img.img-comp-overlay {
-            clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
-        }
+        .img-comp-container { position: relative; height: 100%; width: 100%; }
+        .img-comp-img { position: absolute; width: 100%; height: 100%; overflow: hidden; }
+        .img-comp-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        .img-comp-img.img-comp-overlay { clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); }
 
         .img-comp-slider {
             position: absolute;
@@ -599,27 +406,13 @@
         }
         
         @keyframes scan {
-            0% {
-                top: 0;
-                opacity: 1;
-            }
-            25% {
-                opacity: 0.8;
-            }
-            50% {
-                top: 95%;
-                opacity: 1;
-            }
-            75% {
-                opacity: 0.8;
-            }
-            100% {
-                top: 0;
-                opacity: 1;
-            }
+            0% { top: 0; opacity: 1; }
+            25% { opacity: 0.8; }
+            50% { top: 95%; opacity: 1; }
+            75% { opacity: 0.8; }
+            100% { top: 0; opacity: 1; }
         }
         
-        /* Efecto de vignette */
         .vignette {
             position: absolute;
             top: 0;
@@ -650,14 +443,9 @@
             z-index: 10;
         }
         
-        /* Animación de brillo */
         @keyframes shine {
-            0% {
-                background-position: -100%;
-            }
-            100% {
-                background-position: 200%;
-            }
+            0% { background-position: -100%; }
+            100% { background-position: 200%; }
         }
         
         .shine-text {
@@ -671,98 +459,75 @@
             font-weight: 700;
         }
     </style>
-</head>
-<body>
-    <!-- Partículas doradas -->
-    <div class="gold-particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-    </div>
-    
-    <div class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">
-                Fotografía<br>
-                gastronómica<br>
-                <span class="professional">profesional</span> en<br>
-                segundos.
-            </h1>
-            <p class="hero-text">
-                Eleva la presencia digital de tu restaurante con imágenes de calidad editorial. Transforma fotografías estándar en obras de arte gastronómicas con nuestra tecnología exclusiva.
-            </p>
-            <div class="hero-buttons">
-                <button class="btn-upload"><i class="fas fa-cloud-upload-alt"></i>Transformar imagen</button>
-                <button class="btn-examples"><i class="fas fa-images"></i>Galería Premium</button>
-            </div>
-            <p class="simple-text">Sin equipos costosos. Sin sesiones fotográficas. Resultados inmediatos.</p>
+
+    <div class="landing-wrapper">
+        <div class="gold-particles">
+            <div class="particle"></div> <div class="particle"></div> <div class="particle"></div> <div class="particle"></div> <div class="particle"></div> <div class="particle"></div> <div class="particle"></div>
         </div>
-        <div class="hero-image">
-            <div class="food-image-container">
-                <!-- Nuevo comparador de imágenes con enfoque simplificado -->
-                <div class="img-comp-container">
-                    <!-- Imagen "después" (premium) - se muestra completa -->
-                    <div class="img-comp-img">
-                        <img src="/img/postre-despues.png" alt="Versión premium del plato">
-                    </div>
-                    
-                    <!-- Imagen "antes" (original) - se muestra con clip-path -->
-                    <div class="img-comp-img img-comp-overlay">
-                        <img src="/img/postre-antes.png" alt="Versión original del plato">
-                    </div>
-                    
-                    <!-- Línea divisoria y control deslizante -->
-                    <div class="img-comp-slider">
-                        <div class="img-comp-handle">
-                            <i class="fas fa-chevron-right"></i>
+
+        <div class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Fotografía<br>
+                    gastronómica<br>
+                    <span class="professional">profesional</span> en<br>
+                    segundos.
+                </h1>
+                <p class="hero-text">
+                    Eleva la presencia digital de tu restaurante con imágenes de calidad editorial.
+                    Transforma fotografías estándar en obras de arte gastronómicas con nuestra tecnología exclusiva.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-upload"><i class="fas fa-cloud-upload-alt"></i>Transformar imagen</button>
+                    <button class="btn-examples"><i class="fas fa-images"></i>Galería Premium</button>
+                </div>
+                <p class="simple-text">Sin equipos costosos. Sin sesiones fotográficas. Resultados inmediatos.</p>
+            </div>
+            <div class="hero-image">
+                <div class="food-image-container">
+                    <div class="img-comp-container">
+                        <div class="img-comp-img">
+                            <img src="/img/postre-despues.png" alt="Versión premium del plato">
                         </div>
+                        <div class="img-comp-img img-comp-overlay">
+                            <img src="/img/postre-antes.png" alt="Versión original del plato">
+                        </div>
+                        <div class="img-comp-slider">
+                            <div class="img-comp-handle">
+                                 <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        <div class="before-label">Original</div>
+                        <div class="after-label">Premium</div>
+                        <div class="scan-effect"></div>
+                        <div class="vignette"></div>
                     </div>
-                    
-                    <!-- Etiquetas de antes y después -->
-                    <div class="before-label">Original</div>
-                    <div class="after-label">Premium</div>
-                    
-                    <!-- Efectos visuales -->
-                    <div class="scan-effect"></div>
-                    <div class="vignette"></div>
                 </div>
             </div>
         </div>
+
+        <div class="upgrade-banner">
+            <span class="shine-text">Riquín Elite</span> — Fotografía gastronómica de clase mundial
+        </div>
     </div>
 
-    <div class="upgrade-banner">
-        <span class="shine-text">Riquín Elite</span> — Fotografía gastronómica de clase mundial
-    </div>
-    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Elementos del comparador de imágenes
             const container = document.querySelector('.img-comp-container');
             const overlay = document.querySelector('.img-comp-overlay');
             const slider = document.querySelector('.img-comp-slider');
             const handle = document.querySelector('.img-comp-handle');
-            
-            // Posición inicial
-            let sliderPct = 50; // Porcentaje inicial
-            
-            // Inicializar
+            let sliderPct = 50;
+
             initComparison();
-            
+
             function initComparison() {
-                // Primero establecemos el ancho inicial
                 updateSliderPosition(sliderPct);
-                
-                // Agregar event listeners
                 handle.addEventListener('mousedown', startDrag);
                 slider.addEventListener('mousedown', startDrag);
                 handle.addEventListener('touchstart', startDrag, { passive: false });
                 slider.addEventListener('touchstart', startDrag, { passive: false });
-                
-                // Botones
+
                 const btnUpload = document.querySelector('.btn-upload');
                 if (btnUpload) {
                     btnUpload.addEventListener('click', function() {
@@ -779,54 +544,30 @@
             }
             
             function updateSliderPosition(percent) {
-                // Limitar el porcentaje entre 0 y 100
                 percent = Math.max(0, Math.min(100, percent));
-                
-                // Actualizar la posición del slider
                 slider.style.left = percent + '%';
-                
-                // Actualizar el clip-path para mostrar la imagen "antes"
                 overlay.style.clipPath = `polygon(0 0, ${percent}% 0, ${percent}% 100%, 0 100%)`;
-                
-                // Guardar el valor actual
                 sliderPct = percent;
             }
             
-            // Variables para el arrastre
             let isDragging = false;
-            
+
             function startDrag(e) {
-                // Prevenir comportamiento predeterminado
                 e.preventDefault();
-                
-                // Marcar como arrastrando
                 isDragging = true;
-                
-                // Agregar clase para prevenir selección de texto
                 document.body.classList.add('no-select');
-                
-                // Agregar event listeners para movimiento y finalización
                 window.addEventListener('mousemove', drag);
                 window.addEventListener('touchmove', drag, { passive: false });
                 window.addEventListener('mouseup', stopDrag);
                 window.addEventListener('touchend', stopDrag);
                 window.addEventListener('mouseleave', stopDrag);
-                
-                // Animar el control cuando se inicia el arrastre
                 handle.style.transform = 'translate(-50%, -50%) scale(1.1)';
-                
-                // Realizar el primer movimiento inmediatamente
                 drag(e);
             }
             
             function drag(e) {
-                // Solo procesar si estamos arrastrando
                 if (!isDragging) return;
-                
-                // Prevenir comportamiento predeterminado
                 e.preventDefault();
-                
-                // Obtener la posición del puntero (mouse o touch)
                 let pointerX;
                 if (e.type === 'touchmove') {
                     pointerX = e.touches[0].clientX;
@@ -834,50 +575,31 @@
                     pointerX = e.clientX;
                 }
                 
-                // Obtener las dimensiones y posición del contenedor
                 const rect = container.getBoundingClientRect();
-                
-                // Calcular el porcentaje
                 let percent = ((pointerX - rect.left) / rect.width) * 100;
-                
-                // Actualizar la posición
                 updateSliderPosition(percent);
             }
             
             function stopDrag() {
-                // Solo procesar si estábamos arrastrando
                 if (!isDragging) return;
-                
-                // Marcar como no arrastrando
                 isDragging = false;
-                
-                // Quitar clase para prevenir selección de texto
                 document.body.classList.remove('no-select');
-                
-                // Quitar event listeners
                 window.removeEventListener('mousemove', drag);
                 window.removeEventListener('touchmove', drag);
                 window.removeEventListener('mouseup', stopDrag);
                 window.removeEventListener('touchend', stopDrag);
                 window.removeEventListener('mouseleave', stopDrag);
-                
-                // Restaurar tamaño del control
                 handle.style.transform = 'translate(-50%, -50%)';
             }
             
-            // Pruebas adicionales para mejor soporte en móvil
             window.addEventListener('resize', function() {
-                // Actualizar posición cuando se redimensiona la ventana
                 updateSliderPosition(sliderPct);
             });
-            
-            // Efecto visual al pasar el mouse por el control
             handle.addEventListener('mouseenter', function() {
                 if (!isDragging) {
                     this.style.transform = 'translate(-50%, -50%) scale(1.1)';
                 }
             });
-            
             handle.addEventListener('mouseleave', function() {
                 if (!isDragging) {
                     this.style.transform = 'translate(-50%, -50%)';
@@ -885,5 +607,5 @@
             });
         });
     </script>
-</body>
-</html>
+
+</x-app-layout>

@@ -93,6 +93,14 @@
 
     <!-- Contenido principal -->
     <div class="relative max-w-4xl mx-auto z-10">
+
+        <!-- Créditos disponibles -->
+        <div class="flex justify-end mb-6">
+            <span class="text-yellow-400 font-semibold text-lg">
+                Créditos disponibles: <span class="font-bold">{{ $user->credits_balance }}</span>
+            </span>
+        </div>
+
         <h1 class="text-5xl font-bold leading-tight mb-4" style="font-family: 'Cormorant Garamond', serif; letter-spacing: -0.5px;">
             Editor de Fotografía <span style="color: #d4af37">Gastronómica</span>
         </h1>
@@ -117,6 +125,7 @@
             </div>
         @endif
 
+        <!-- Formulario de subida -->
         <div class="mt-10 p-8 rounded-xl" style="background-color: #111; border: 1px solid #d4af37;">
             <h2 class="text-2xl mb-4" style="color: #d4af37;">Sube tu foto</h2>
             <p class="text-sm mb-6" style="color: rgba(255,255,255,0.6);">
@@ -150,10 +159,84 @@
             </div>
         </div>
 
+        <!-- Historial de movimientos -->
+        @if(isset($transactions) && $transactions->count())
+            <div class="mt-12 bg-neutral-900 border border-yellow-600 rounded-xl p-6 shadow-lg">
+                <h3 class="text-xl font-bold mb-4 text-yellow-400">Historial de movimientos</h3>
+                <table class="w-full text-sm text-left">
+                    <thead>
+                        <tr>
+                            <th class="pb-2">Fecha</th>
+                            <th class="pb-2">Tipo</th>
+                            <th class="pb-2">Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($transactions as $transaction)
+                            <tr>
+                                <td class="py-1 opacity-80">{{ $transaction->created_at->format('d/m/Y H:i') }}</td>
+                                <td class="py-1">
+                                    @if($transaction->type == 'use')
+                                        <span class="text-red-400 font-medium">Uso</span>
+                                    @elseif($transaction->type == 'purchase')
+                                        <span class="text-green-400 font-medium">Compra</span>
+                                    @elseif($transaction->type == 'promo')
+                                        <span class="text-blue-400 font-medium">Promoción</span>
+                                    @else
+                                        <span class="font-medium">{{ ucfirst($transaction->type) }}</span>
+                                    @endif
+                                </td>
+                                <td class="py-1 font-semibold {{ $transaction->amount > 0 ? 'text-green-400' : 'text-red-400' }}">
+                                    {{ $transaction->amount > 0 ? '+' : '' }}{{ $transaction->amount }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
+
+        <!-- Botón para conseguir más créditos -->
+        @if($user->credits_balance < 2)
+            <div class="mt-6 text-center">
+                <button class="btn-gold opacity-70 cursor-not-allowed" disabled>
+                    Consigue más créditos (próximamente)
+                </button>
+                <p class="text-xs mt-2 text-neutral-400">Pronto podrás recargar créditos aquí</p>
+            </div>
+        @endif
+
         <!-- Testimonio -->
         <div class="mt-16 text-sm text-neutral-400 italic text-center">
             “Pensaba que era IA genérica… pero me entregaron una imagen digna de portada. — Chef María A.”
         </div>
+        
+   
+
+
+            @if(isset($gallery) && $gallery->count())
+   
+
+    <div class="mt-14">
+        <h3 class="text-xl font-bold mb-4 text-yellow-400">Tus imágenes procesadas</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            @foreach($gallery as $img)
+                <div class="resultado-premium p-4">
+                    <a href="{{ asset('storage/' . $img->processed_path) }}" target="_blank">
+                        <img src="{{ asset('storage/' . $img->processed_path) }}" alt="Imagen procesada" class="mx-auto max-h-48 mb-3 transition hover:scale-105 shadow-lg border border-yellow-600">
+                    </a>
+                    <div class="text-xs text-neutral-400 mb-2">
+                        Procesada el {{ $img->created_at->format('d/m/Y H:i') }}
+                    </div>
+                    <a href="{{ asset('storage/' . $img->processed_path) }}" download class="btn-gold mt-2 inline-block text-sm">Descargar</a>
+                </div>
+            @endforeach
+        </div>
+    </div>
+@endif
+
+
+
     </div>
 
     <script>
