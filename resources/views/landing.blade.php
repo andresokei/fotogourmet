@@ -1,529 +1,889 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('FotoGourmet') }}
-        </h2>
-    </x-slot>
-
-    {{-- Estilos personalizados --}}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riquín - Fotografía gastronómica de alta gama</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #c9a227;
-            --dark: #222;
-            --light: #fff;
-            --gray: #f5f5f5;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+
+        :root {
+            --gold-primary: #d4af37;
+            --gold-light: #f0d278;
+            --gold-dark: #9c7c21;
+            --black-primary: #0a0a0a;
+            --black-secondary: #111111;
+            --white-primary: #ffffff;
+            --gray-light: rgba(255, 255, 255, 0.8);
         }
-        
-        /* Header */
-        .custom-header {
-            padding: 20px 0;
+
+        body {
+            background: #000000;
+            color: var(--white-primary);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
             position: relative;
-            z-index: 100;
-            background-color: var(--dark);
-            color: var(--light);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo span {
-            font-size: 1.5rem;
-            margin-left: 5px;
-        }
-        
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            width: 30px;
-            height: 20px;
-            position: relative;
-            z-index: 101;
-        }
-        
-        .menu-toggle span {
-            display: block;
+            min-height: 100vh;
             width: 100%;
-            height: 2px;
-            background-color: var(--light);
-            position: absolute;
-            transition: all 0.3s;
         }
         
-        .menu-toggle span:nth-child(1) {
+        /* Prevenir selección de texto durante el arrastre */
+        .no-select {
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+        }
+        
+        /* Textura sutil de fondo */
+        body::before {
+            content: '';
+            position: fixed;
             top: 0;
-        }
-        
-        .menu-toggle span:nth-child(2) {
-            top: 9px;
-        }
-        
-        .menu-toggle span:nth-child(3) {
-            top: 18px;
-        }
-        
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg);
-            top: 9px;
-        }
-        
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg);
-            top: 9px;
-        }
-        
-        .menu {
-            display: flex;
-            list-style: none;
-            transition: all 0.3s ease;
-        }
-        
-        .menu li {
-            margin-left: 30px;
-        }
-        
-        .menu a {
-            color: var(--light);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s;
-        }
-        
-        .menu a:hover {
-            color: var(--primary);
-        }
-        
-        .cta-button {
-            background-color: var(--primary);
-            color: var(--dark);
-            border: none;
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
-        
-        .cta-button:hover {
-            background-color: #e0b52b;
-            transform: translateY(-2px);
-        }
-        
-        /* Hero Section */
-        .hero {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            padding: 50px 0;
-            background-color: var(--dark);
-            color: var(--light);
-        }
-        
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-        
-        .hero-text {
-            padding-right: 20px;
-        }
-        
-        .hero-text h1 {
-            font-size: 3.5rem;
-            line-height: 1.1;
-            margin-bottom: 30px;
-        }
-        
-        .hero-text h1 span {
-            color: var(--primary);
-            display: block;
-        }
-        
-        .hero-text p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 40px;
-            color: #ccc;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .secondary-button {
-            background-color: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .secondary-button:hover {
-            background-color: rgba(201, 162, 39, 0.1);
-        }
-        
-        .note {
-            font-size: 0.9rem;
-            color: #999;
-            font-style: italic;
-            margin-top: 20px;
-        }
-        
-        /* Slider */
-        .slider-container {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            height: 100%;
-        }
-        
-        .image-slider {
-            position: relative;
+            left: 0;
             width: 100%;
-            height: 450px;
+            height: 100%;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='rgba(255,255,255,0.02)' fill-opacity='0.02' fill-rule='evenodd'/%3E%3C/svg%3E");
+            z-index: -1;
         }
-        
-        .slider-before,
-        .slider-after {
+
+        /* Efecto de partículas doradas */
+        .gold-particles {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-size: contain;
-            background-position: center ;
-        }
-        
-        /* Cómo funciona el slider:
-         * slider-before: imagen completa de fondo (debe ser la imagen "antes")
-         * slider-after: imagen que se revela con el deslizador (debe ser la imagen "después")
-         */
-        .slider-before {
-            /* Sin filtros */
-        }
-        
-        .slider-after {
-            clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
-        }
-        
-        .slider-handle {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background-color: var(--light);
-            left: 50%;
-            transform: translateX(-50%);
-            cursor: ew-resize;
-            z-index: 10;
-        }
-        
-        .slider-handle::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-        
-        .slider-label {
-            position: absolute;
-            bottom: 20px;
-            color: var(--light);
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.8rem;
             pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
         }
         
-        .before-label {
-            left: 20px;
+        .particle {
+            position: absolute;
+            background: var(--gold-primary);
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 8s infinite ease-in-out;
         }
         
-        .after-label {
-            right: 20px;
+        .particle:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
         }
         
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero-text h1 {
-                font-size: 2.8rem;
+        .particle:nth-child(2) {
+            top: 40%;
+            left: 30%;
+            animation-delay: 1s;
+        }
+        
+        .particle:nth-child(3) {
+            top: 60%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+        
+        .particle:nth-child(4) {
+            top: 80%;
+            left: 25%;
+            animation-delay: 3s;
+        }
+        
+        .particle:nth-child(5) {
+            top: 30%;
+            left: 70%;
+            animation-delay: 4s;
+        }
+        
+        .particle:nth-child(6) {
+            top: 50%;
+            left: 85%;
+            animation-delay: 5s;
+        }
+        
+        .particle:nth-child(7) {
+            top: 75%;
+            left: 75%;
+            animation-delay: 6s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                opacity: 0;
             }
-            
-            .image-slider {
-                height: 400px;
+            25% {
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-100px);
+                opacity: 0.6;
+            }
+            75% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-200px);
+                opacity: 0;
             }
         }
-        
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
+
+        .hero {
+            display: flex;
+            padding: 6rem 6rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive para hero section */
+        @media screen and (max-width: 1200px) {
+            .hero {
+                padding: 5rem 4rem;
             }
-            
-            .menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
+        }
+
+        @media screen and (max-width: 992px) {
+            .hero {
+                padding: 4rem 3rem;
                 flex-direction: column;
-                background-color: var(--dark);
-                width: 80%;
-                height: 100vh;
-                padding: 80px 30px;
-                z-index: 100;
-                transition: all 0.4s ease;
-            }
-            
-            .menu.active {
-                right: 0;
-            }
-            
-            .menu li {
-                margin: 15px 0;
+                gap: 4rem;
             }
             
             .hero-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .hero-text {
                 padding-right: 0;
-                order: 1;
             }
-            
-            .slider-container {
-                order: 0;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-            
-            .image-slider {
-                height: 350px;
-            }
-            
+        }
+
+        @media screen and (max-width: 768px) {
             .hero {
-                padding: 30px 0;
+                padding: 3rem 2rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero {
+                padding: 2rem 1.5rem;
+                gap: 3rem;
+            }
+        }
+
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 4rem;
+            position: relative;
+        }
+        
+        /* Elemento decorativo */
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -4rem;
+            width: 1px;
+            height: 70%;
+            background: linear-gradient(to bottom, transparent, var(--gold-primary), transparent);
+            opacity: 0.4;
+        }
+        
+        @media screen and (max-width: 992px) {
+            .hero-content::before {
+                display: none;
+            }
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.8rem;
+            line-height: 1.1;
+            margin-bottom: 1.8rem;
+            font-weight: 400;
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+        
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: var(--gold-primary);
+        }
+
+        /* Responsive para títulos */
+        @media screen and (max-width: 1200px) {
+            .hero-title {
+                font-size: 4.2rem;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            .hero-title {
+                font-size: 3.8rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .hero-title {
+                font-size: 3.2rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero-title::after {
+                width: 60px;
+                bottom: -0.8rem;
+            }
+        }
+
+        .professional {
+            color: var(--gold-primary);
+            font-weight: 600;
+            font-style: italic;
+            display: inline-block;
+        }
+
+        .hero-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 520px;
+            font-weight: 300;
+            color: var(--gray-light);
+            position: relative;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Responsive para botones */
+        @media screen and (max-width: 768px) {
+            .hero-buttons {
+                gap: 1rem;
+            }
+            
+            .btn-upload, .btn-examples {
+                padding: 0.9rem 1.8rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+            }
+            
+            .btn-upload, .btn-examples {
+                width: 100%;
+                padding: 0.85rem 1.5rem;
+                text-align: center;
+            }
+        }
+
+        .btn-upload {
+            padding: 1rem 2.2rem;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+            border: none;
+            color: var(--black-primary);
+            border-radius: 2px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-upload i {
+            margin-right: 8px;
+        }
+
+        .btn-upload::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.05) 100%);
+            z-index: -1;
+        }
+
+        .btn-upload:hover {
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 70%, var(--gold-primary) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35);
+        }
+
+        .btn-examples {
+            padding: 1rem 2.2rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            border-radius: 2px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-examples i {
+            margin-right: 8px;
+        }
+
+        .btn-examples::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            transition: transform 0.4s ease;
+        }
+
+        .btn-examples:hover {
+            border-color: var(--gold-light);
+            color: var(--gold-light);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
+        }
+        
+        .btn-examples:hover::before {
+            transform: translateX(100%);
+        }
+
+        .simple-text {
+            font-size: 0.9rem;
+            color: var(--gold-primary);
+            opacity: 0.85;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        /* NUEVO CÓDIGO PARA EL COMPARADOR DE IMÁGENES */
+        .food-image-container {
+            position: relative;
+            width: 100%;
+            height: 580px;
+            overflow: hidden;
+            border-radius: 3px;
+            background-color: var(--black-secondary);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            touch-action: none;
+        }
+        
+        /* Responsive para contenedor de imágenes */
+        @media screen and (max-width: 1200px) {
+            .food-image-container {
+                height: 520px;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            .food-image-container {
+                height: 480px;
+                max-width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .food-image-container {
+                height: 420px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .food-image-container {
+                height: 380px;
+            }
+            
+            .before-label, .after-label {
+                font-size: 0.7rem;
+                padding: 0.4rem 0.9rem;
+                bottom: 15px;
+            }
+            
+            .before-label {
+                left: 15px;
+            }
+            
+            .after-label {
+                right: 15px;
             }
         }
         
-        @media (max-width: 576px) {
-            .hero-text h1 {
-                font-size: 2rem;
+        /* Efecto de esquinas doradas */
+        .food-image-container::before, 
+        .food-image-container::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-color: var(--gold-primary);
+            z-index: 4;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .food-image-container::before {
+            top: 10px;
+            left: 10px;
+            border-top: 1px solid;
+            border-left: 1px solid;
+        }
+        
+        .food-image-container::after {
+            bottom: 10px;
+            right: 10px;
+            border-bottom: 1px solid;
+            border-right: 1px solid;
+        }
+
+        /* Nuevo comparador de imágenes basado en clip-path */
+        .img-comp-container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+
+        .img-comp-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .img-comp-img img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* La segunda imagen (después) estará debajo */
+        .img-comp-img.img-comp-overlay {
+            clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+        }
+
+        .img-comp-slider {
+            position: absolute;
+            z-index: 9;
+            cursor: ew-resize;
+            width: 2px;
+            height: 100%;
+            background-color: var(--gold-primary);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .img-comp-handle {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--black-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+            cursor: ew-resize;
+            z-index: 10;
+        }
+
+        .img-comp-handle::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 1px solid var(--gold-primary);
+            opacity: 0.3;
+        }
+
+        .before-label, .after-label {
+            position: absolute;
+            bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--white-primary);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            z-index: 5;
+        }
+
+        .before-label {
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--white-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .after-label {
+            right: 20px;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
+            color: var(--black-primary);
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .scan-effect {
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, 
+                transparent 0%,
+                rgba(212, 175, 55, 0.2) 20%,
+                rgba(212, 175, 55, 0.8) 50%,
+                rgba(212, 175, 55, 0.2) 80%,
+                transparent 100%);
+            z-index: 8;
+            animation: scan 3s infinite ease-in-out;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+        
+        @keyframes scan {
+            0% {
+                top: 0;
+                opacity: 1;
             }
-            
-            .hero-text p {
-                font-size: 1rem;
+            25% {
+                opacity: 0.8;
             }
-            
-            .hero-buttons {
-                flex-direction: column;
-                gap: 15px;
+            50% {
+                top: 95%;
+                opacity: 1;
             }
-            
-            .image-slider {
-                height: 300px;
+            75% {
+                opacity: 0.8;
             }
-            
-            nav {
-                justify-content: space-between;
-            }
-            
-            .nav-right {
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                margin-top: 15px;
-            }
-            
-            .logo {
-                font-size: 1.6rem;
-            }
-            
-            .slider-handle::after {
-                width: 30px;
-                height: 30px;
+            100% {
+                top: 0;
+                opacity: 1;
             }
         }
+        
+        /* Efecto de vignette */
+        .vignette {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, 
+                transparent 60%, 
+                rgba(0, 0, 0, 0.3) 100%);
+            pointer-events: none;
+            z-index: 6;
+        }
+
+        .upgrade-banner {
+            background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-light) 100%);
+            color: var(--black-primary);
+            padding: 1.2rem;
+            text-align: center;
+            font-weight: 500;
+            font-size: 1.05rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+        
+        /* Animación de brillo */
+        @keyframes shine {
+            0% {
+                background-position: -100%;
+            }
+            100% {
+                background-position: 200%;
+            }
+        }
+        
+        .shine-text {
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(to right, var(--black-primary) 0%, var(--black-primary) 42%, #ffffff 50%, var(--black-primary) 58%, var(--black-primary) 100%);
+            background-size: 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s infinite linear;
+            font-weight: 700;
+        }
     </style>
-
-    {{-- Contenido principal --}}
-    <div class="custom-header">
-        <div class="container">
-            <nav>
-                <a href="{{ url('/') }}" class="logo">
-                    FotoGourmet<span>🍽️</span>
-                </a>
-                <div class="menu-toggle" id="menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <ul class="menu" id="menu">
-                    <li><a href="{{ url('/como-funciona') }}">Cómo Funciona</a></li>
-                    <li><a href="{{ url('/ejemplos') }}">Ejemplos</a></li>
-                    <li><a href="{{ url('/beneficios') }}">Beneficios</a></li>
-                    <li><a href="{{ url('/testimonios') }}">Testimonios</a></li>
-                    <li><a href="{{ url('/precios') }}">Precios</a></li>
-                </ul>
-                <a href="{{ url('/empezar') }}" class="cta-button">Empezar Ahora</a>
-            </nav>
-        </div>
+</head>
+<body>
+    <!-- Partículas doradas -->
+    <div class="gold-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
     </div>
-
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Fotografía gastronómica <span>profesional</span> en segundos.</h1>
-                    <p>Transforma la presencia online de tu restaurante sin costosas sesiones fotográficas. Mejora las fotos de tus platos al instante.</p>
-                    <div class="hero-buttons">
-                        <a href="{{ url('/subir') }}" class="cta-button">Sube tu plato</a>
-                        <a href="{{ url('/ejemplos') }}" class="secondary-button">Ver ejemplos</a>
+    
+    <div class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Fotografía<br>
+                gastronómica<br>
+                <span class="professional">profesional</span> en<br>
+                segundos.
+            </h1>
+            <p class="hero-text">
+                Eleva la presencia digital de tu restaurante con imágenes de calidad editorial. Transforma fotografías estándar en obras de arte gastronómicas con nuestra tecnología exclusiva.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn-upload"><i class="fas fa-cloud-upload-alt"></i>Transformar imagen</button>
+                <button class="btn-examples"><i class="fas fa-images"></i>Galería Premium</button>
+            </div>
+            <p class="simple-text">Sin equipos costosos. Sin sesiones fotográficas. Resultados inmediatos.</p>
+        </div>
+        <div class="hero-image">
+            <div class="food-image-container">
+                <!-- Nuevo comparador de imágenes con enfoque simplificado -->
+                <div class="img-comp-container">
+                    <!-- Imagen "después" (premium) - se muestra completa -->
+                    <div class="img-comp-img">
+                        <img src="/img/postre-despues.png" alt="Versión premium del plato">
                     </div>
-                    <p class="note">¡Así de simple! Sin equipos costosos ni fotógrafos.</p>
-                </div>
-                <div class="slider-container">
-                    <div class="image-slider">
-                        <div class="slider-before" style="background-image: url('/img/postre-despues.png')"></div>
-                        <div class="slider-after" style="background-image: url('/img/postre-antes.png')"></div>   
-                        <div class="slider-handle" id="slider-handle"></div>
-                        <div class="slider-label before-label">Antes</div>
-                        <div class="slider-label after-label">Después</div>
+                    
+                    <!-- Imagen "antes" (original) - se muestra con clip-path -->
+                    <div class="img-comp-img img-comp-overlay">
+                        <img src="/img/postre-antes.png" alt="Versión original del plato">
                     </div>
+                    
+                    <!-- Línea divisoria y control deslizante -->
+                    <div class="img-comp-slider">
+                        <div class="img-comp-handle">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Etiquetas de antes y después -->
+                    <div class="before-label">Original</div>
+                    <div class="after-label">Premium</div>
+                    
+                    <!-- Efectos visuales -->
+                    <div class="scan-effect"></div>
+                    <div class="vignette"></div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    {{-- JavaScript --}}
+    <div class="upgrade-banner">
+        <span class="shine-text">Riquín Elite</span> — Fotografía gastronómica de clase mundial
+    </div>
+    
     <script>
-        // Mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menu-toggle');
-            const menu = document.getElementById('menu');
+            // Elementos del comparador de imágenes
+            const container = document.querySelector('.img-comp-container');
+            const overlay = document.querySelector('.img-comp-overlay');
+            const slider = document.querySelector('.img-comp-slider');
+            const handle = document.querySelector('.img-comp-handle');
             
-            if (menuToggle && menu) {
-                menuToggle.addEventListener('click', () => {
-                    menuToggle.classList.toggle('active');
-                    menu.classList.toggle('active');
-                });
-                
-                // Close menu when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!menu.contains(e.target) && !menuToggle.contains(e.target) && menu.classList.contains('active')) {
-                        menu.classList.remove('active');
-                        menuToggle.classList.remove('active');
-                    }
-                });
-            }
+            // Posición inicial
+            let sliderPct = 50; // Porcentaje inicial
             
-            // Slider functionality
-            const handle = document.getElementById('slider-handle');
-            const sliderAfter = document.querySelector('.slider-after');
+            // Inicializar
+            initComparison();
             
-            if (handle && sliderAfter) {
-                let isDragging = false;
+            function initComparison() {
+                // Primero establecemos el ancho inicial
+                updateSliderPosition(sliderPct);
                 
-                // Initial position - comienza mostrando más de la imagen "después"
-                updateSliderPosition(35);
+                // Agregar event listeners
+                handle.addEventListener('mousedown', startDrag);
+                slider.addEventListener('mousedown', startDrag);
+                handle.addEventListener('touchstart', startDrag, { passive: false });
+                slider.addEventListener('touchstart', startDrag, { passive: false });
                 
-                function updateSliderPosition(percentage) {
-                    sliderAfter.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
-                    handle.style.left = `${percentage}%`;
+                // Botones
+                const btnUpload = document.querySelector('.btn-upload');
+                if (btnUpload) {
+                    btnUpload.addEventListener('click', function() {
+                        alert('¡Pronto podrás subir tus propias imágenes gastronómicas para transformarlas!');
+                    });
                 }
                 
-                handle.addEventListener('mousedown', () => {
-                    isDragging = true;
-                });
-                
-                window.addEventListener('mouseup', () => {
-                    isDragging = false;
-                });
-                
-                window.addEventListener('mousemove', (e) => {
-                    if (!isDragging) return;
-                    
-                    const sliderRect = document.querySelector('.image-slider').getBoundingClientRect();
-                    const percentage = Math.min(100, Math.max(0, ((e.clientX - sliderRect.left) / sliderRect.width) * 100));
-                    
-                    updateSliderPosition(percentage);
-                });
-                
-                // Touch support for mobile
-                handle.addEventListener('touchstart', (e) => {
-                    isDragging = true;
-                    e.preventDefault();
-                });
-                
-                window.addEventListener('touchend', () => {
-                    isDragging = false;
-                });
-                
-                window.addEventListener('touchmove', (e) => {
-                    if (!isDragging) return;
-                    
-                    const touch = e.touches[0];
-                    const sliderRect = document.querySelector('.image-slider').getBoundingClientRect();
-                    const percentage = Math.min(100, Math.max(0, ((touch.clientX - sliderRect.left) / sliderRect.width) * 100));
-                    
-                    updateSliderPosition(percentage);
-                });
+                const btnExamples = document.querySelector('.btn-examples');
+                if (btnExamples) {
+                    btnExamples.addEventListener('click', function() {
+                        alert('Galería de ejemplos en construcción. ¡Vuelve pronto!');
+                    });
+                }
             }
+            
+            function updateSliderPosition(percent) {
+                // Limitar el porcentaje entre 0 y 100
+                percent = Math.max(0, Math.min(100, percent));
+                
+                // Actualizar la posición del slider
+                slider.style.left = percent + '%';
+                
+                // Actualizar el clip-path para mostrar la imagen "antes"
+                overlay.style.clipPath = `polygon(0 0, ${percent}% 0, ${percent}% 100%, 0 100%)`;
+                
+                // Guardar el valor actual
+                sliderPct = percent;
+            }
+            
+            // Variables para el arrastre
+            let isDragging = false;
+            
+            function startDrag(e) {
+                // Prevenir comportamiento predeterminado
+                e.preventDefault();
+                
+                // Marcar como arrastrando
+                isDragging = true;
+                
+                // Agregar clase para prevenir selección de texto
+                document.body.classList.add('no-select');
+                
+                // Agregar event listeners para movimiento y finalización
+                window.addEventListener('mousemove', drag);
+                window.addEventListener('touchmove', drag, { passive: false });
+                window.addEventListener('mouseup', stopDrag);
+                window.addEventListener('touchend', stopDrag);
+                window.addEventListener('mouseleave', stopDrag);
+                
+                // Animar el control cuando se inicia el arrastre
+                handle.style.transform = 'translate(-50%, -50%) scale(1.1)';
+                
+                // Realizar el primer movimiento inmediatamente
+                drag(e);
+            }
+            
+            function drag(e) {
+                // Solo procesar si estamos arrastrando
+                if (!isDragging) return;
+                
+                // Prevenir comportamiento predeterminado
+                e.preventDefault();
+                
+                // Obtener la posición del puntero (mouse o touch)
+                let pointerX;
+                if (e.type === 'touchmove') {
+                    pointerX = e.touches[0].clientX;
+                } else {
+                    pointerX = e.clientX;
+                }
+                
+                // Obtener las dimensiones y posición del contenedor
+                const rect = container.getBoundingClientRect();
+                
+                // Calcular el porcentaje
+                let percent = ((pointerX - rect.left) / rect.width) * 100;
+                
+                // Actualizar la posición
+                updateSliderPosition(percent);
+            }
+            
+            function stopDrag() {
+                // Solo procesar si estábamos arrastrando
+                if (!isDragging) return;
+                
+                // Marcar como no arrastrando
+                isDragging = false;
+                
+                // Quitar clase para prevenir selección de texto
+                document.body.classList.remove('no-select');
+                
+                // Quitar event listeners
+                window.removeEventListener('mousemove', drag);
+                window.removeEventListener('touchmove', drag);
+                window.removeEventListener('mouseup', stopDrag);
+                window.removeEventListener('touchend', stopDrag);
+                window.removeEventListener('mouseleave', stopDrag);
+                
+                // Restaurar tamaño del control
+                handle.style.transform = 'translate(-50%, -50%)';
+            }
+            
+            // Pruebas adicionales para mejor soporte en móvil
+            window.addEventListener('resize', function() {
+                // Actualizar posición cuando se redimensiona la ventana
+                updateSliderPosition(sliderPct);
+            });
+            
+            // Efecto visual al pasar el mouse por el control
+            handle.addEventListener('mouseenter', function() {
+                if (!isDragging) {
+                    this.style.transform = 'translate(-50%, -50%) scale(1.1)';
+                }
+            });
+            
+            handle.addEventListener('mouseleave', function() {
+                if (!isDragging) {
+                    this.style.transform = 'translate(-50%, -50%)';
+                }
+            });
         });
     </script>
-
-    
-</x-app-layout>
+</body>
+</html>

@@ -52,5 +52,15 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/upload', [ImageUploadController::class, 'store'])->name('upload.store');
 });
 
+
+
 // Auth routes generadas por Breeze
 require __DIR__ . '/auth.php';
+
+Route::get('/a-ver', function () {
+    return ini_get('max_execution_time');
+});
+
+Route::get('/php-ini-path', function () {
+    return php_ini_loaded_file();
+});

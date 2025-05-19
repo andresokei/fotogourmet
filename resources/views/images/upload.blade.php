@@ -23,5 +23,21 @@
                 Subir imagen
             </button>
         </form>
+        @if($image)
+    <div class="mt-12">
+        <h2 class="text-2xl font-bold text-center mb-6">Resultado</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+            <div class="text-center">
+                <h3 class="mb-2 text-lg font-semibold text-neutral-300">Original</h3>
+                <img src="{{ asset('storage/' . $image->original_path) }}" alt="Imagen original" class="rounded-lg shadow max-h-96 mx-auto">
+            </div>
+            <div class="text-center">
+                <h3 class="mb-2 text-lg font-semibold text-yellow-400">Procesada</h3>
+                <img src="{{ asset('storage/' . $image->processed_path) }}" alt="Imagen procesada" class="rounded-lg shadow max-h-96 mx-auto">
+            </div>
+        </div>
+    </div>
+@endif
+
     </div>
 </x-app-layout>

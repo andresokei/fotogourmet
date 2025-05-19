@@ -1,26 +1,28 @@
-<div class="relative bg-black text-white min-h-screen py-12 px-6" style="font-family: 'Montserrat', sans-serif; background-color: #000;
-    background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'rgba(255,255,255,0.02)\' fill-opacity=\'0.02\' fill-rule=\'evenodd\'/%3E%3C/svg%3E');">
 
-    <!-- Golden Particles -->
+<div class="relative bg-black text-white min-h-screen py-12 px-6" style="font-family: 'Montserrat', sans-serif;">
+    <!-- Fondo sutil de puntos -->
+    <div style="background-image: url('data:image/svg+xml,...'); background-repeat: repeat;"></div>
+
+    <!-- Partículas doradas -->
     <style>
         @keyframes float {
-            0% { transform: translateY(0) scale(1); opacity: 0; }
-            20% { opacity: 0.4; }
-            50% { transform: translateY(-100px) scale(1.4); opacity: 0.7; }
-            80% { opacity: 0.4; }
-            100% { transform: translateY(-200px) scale(1); opacity: 0; }
+            0%   { transform: translateY(0) scale(1); opacity: 0; }
+            25%  { opacity: 0.6; }
+            50%  { transform: translateY(-120px) scale(1.3) rotate(10deg); opacity: 0.9; }
+            75%  { opacity: 0.5; }
+            100% { transform: translateY(-250px) scale(1) rotate(-10deg); opacity: 0; }
         }
         .particle {
             position: absolute;
             border-radius: 50%;
             background-color: #f6e27f;
-            box-shadow: 0 0 4px rgba(212, 175, 55, 0.5), 0 0 8px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 6px rgba(212, 175, 55, 0.5), 0 0 12px rgba(212, 175, 55, 0.2);
             animation: float 8s infinite ease-in-out;
-            animation-fill-mode: both;
             will-change: transform, opacity;
+            pointer-events: none;
+            mix-blend-mode: screen;
         }
     </style>
-
     <div class="pointer-events-none absolute inset-0 overflow-hidden z-0">
         <script>
             const container = document.currentScript.parentElement;
@@ -38,23 +40,44 @@
         </script>
     </div>
 
+    <!-- Contenido -->
     <div class="relative max-w-4xl mx-auto z-10">
-        <!-- ...rest of the content remains unchanged -->
-
-
-
-<div class="bg-black text-white min-h-screen py-12 px-6" style="font-family: 'Montserrat', sans-serif; background-color: #000;
-    background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'rgba(255,255,255,0.02)\' fill-opacity=\'0.02\' fill-rule=\'evenodd\'/%3E%3C/svg%3E');">
-    <div class="max-w-4xl mx-auto">
         <h1 class="text-5xl font-bold leading-tight mb-4" style="font-family: 'Cormorant Garamond', serif; letter-spacing: -0.5px;">
             Editor de Fotografía <span style="color: #d4af37">Gastronómica</span>
         </h1>
-        <p class="mt-2" style="color: rgba(255,255,255,0.8); font-weight: 300;">
+        <p class="mt-2" style="color: rgba(255,255,255,0.8); font-weight: 300; line-height: 1.6;">
             Transforma tus fotos de comida en imágenes de calidad profesional en segundos.
         </p>
 
-        <div class="mt-10 p-8 rounded-xl" style="background-color: #111111; border: 1px solid #d4af37;">
-            <h2 class="text-2xl mb-4" style="color: #d4af37; font-weight: 500;">Sube tu foto</h2>
+        @if(session('message'))
+            <div class="mt-6 p-4 rounded bg-green-600 text-white shadow">
+                {{ session('message') }}
+            </div>
+        @endif
+
+        @if(session('result_url'))
+    <div class="mt-10 text-center">
+        <h2 class="text-2xl mb-4 text-yellow-400">Resultado</h2>
+        <img src="{{ session('result_url') }}" alt="Imagen procesada" class="mx-auto max-h-96 rounded shadow-lg">
+        <a href="{{ session('result_url') }}" download class="inline-block mt-4 px-6 py-2 bg-yellow-500 text-black font-semibold rounded shadow hover:bg-yellow-400 transition">
+            Descargar imagen
+        </a>
+    </div>
+@endif
+
+
+        @if($errors->any())
+            <div class="mt-6 p-4 rounded bg-red-600 text-white shadow">
+                <ul class="list-disc pl-5">
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <div class="mt-10 p-8 rounded-xl" style="background-color: #111; border: 1px solid #d4af37;">
+            <h2 class="text-2xl mb-4" style="color: #d4af37;">Sube tu foto</h2>
             <p class="text-sm mb-6" style="color: rgba(255,255,255,0.6);">
                 Formatos permitidos: JPG, PNG. Tamaño máximo: 6MB.
             </p>
@@ -71,25 +94,68 @@
 
                 <div id="preview" class="text-center"></div>
 
-                <button type="submit" class="w-full py-3 px-6 rounded transition" style="background: linear-gradient(135deg, #f0d278 0%, #d4af37 50%, #9c7c21 100%); color: #0a0a0a; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);">
+                <div class="mt-6">
+                    <label for="style" class="block text-sm font-semibold mb-2 text-white">Estilo</label>
+                    <select name="style" id="style" required class="w-full bg-black border border-yellow-500 text-white rounded p-2">
+                        <option value="rustico">Rústico</option>
+                        <option value="alta-cocina">Alta Cocina</option>
+                        <option value="luminoso">Luminoso</option>
+                    </select>
+                </div>
+
+                <button id="submitBtn" type="submit" class="w-full py-3 px-6 rounded transition" style="background: linear-gradient(135deg, #f0d278 0%, #d4af37 50%, #9c7c21 100%); color: #0a0a0a; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);">
                     ✏️ Transformar en foto profesional
                 </button>
+
             </form>
-        </div>
-    </div>
+            <div id="loader" class="hidden text-center mt-6">
+    <div class="animate-spin inline-block w-12 h-12 border-4 border-yellow-400 border-t-transparent rounded-full"></div>
+    <p class="mt-2 text-yellow-400 font-semibold">Procesando tu imagen gastronómica...</p>
 </div>
 
-<script>
-    function previewImage(event) {
-        const preview = document.getElementById('preview');
-        const file = event.target.files[0];
-        preview.innerHTML = '';
+        </div>
 
-        if (file) {
-            const img = document.createElement('img');
-            img.src = URL.createObjectURL(file);
-            img.className = 'mx-auto mt-6 max-h-64 rounded shadow-lg';
-            preview.appendChild(img);
+        <!-- Testimonio -->
+        <div class="mt-16 text-sm text-neutral-400 italic text-center">
+            “Pensaba que era IA genérica… pero me entregaron una imagen digna de portada. — Chef María A.”
+        </div>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            const preview = document.getElementById('preview');
+            const file = event.target.files[0];
+            preview.innerHTML = '';
+
+            if (file) {
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(file);
+                img.className = 'mx-auto mt-6 max-h-64 rounded shadow-lg';
+                img.onload = () => {
+                    img.style.opacity = '0';
+                    preview.appendChild(img);
+                    requestAnimationFrame(() => {
+                        img.style.transition = 'opacity 1s ease-in-out';
+                        img.style.opacity = '1';
+                    });
+                };
+            }
         }
-    }
+    </script>
+</div>
+<script>
+    const form = document.querySelector('form');
+    const loader = document.getElementById('loader');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', () => {
+        // Mostrar loader
+        loader.classList.remove('hidden');
+
+        // Desactivar botón
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Procesando...';
+        submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+    });
 </script>
+
