@@ -12,6 +12,12 @@ class CreditTransaction extends Model
         'type',
         'reference',
         'expires_at',
+        'expired_processed',   // ← nuevo
+    ];
+
+    protected $casts = [
+        'expires_at'        => 'datetime',
+        'expired_processed' => 'boolean',
     ];
 
     public function user()

@@ -6,12 +6,18 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\ImageUploadController;
 use App\Livewire\Dashboard\Main;
 use App\Models\User;
+use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\CustomStripeWebhookController;
+
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 */
+
+Route::post('/stripe/webhook', [CustomStripeWebhookController::class, 'handleWebhook']);
+
 
 Route::view('/', 'landing');
 
@@ -64,3 +70,14 @@ Route::get('/a-ver', function () {
 Route::get('/php-ini-path', function () {
     return php_ini_loaded_file();
 });
+
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/subscriptions/plans', [SubscriptionController::class, 'showPlans'])->name('subscriptions.plans');
+    Route::post('/subscriptions/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscriptions.subscribe');
+    Route::get('/subscriptions/success', [SubscriptionController::class, 'success'])->name('subscriptions.success');
+    Route::get('/subscriptions/cancel', [SubscriptionController::class, 'cancel'])->name('subscriptions.cancel');
+});
+
+
