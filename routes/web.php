@@ -16,6 +16,15 @@ use App\Http\Controllers\CustomStripeWebhookController;
 |--------------------------------------------------------------------------
 */
 
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/account/subscriptions',        [SubscriptionController::class, 'index'])
+         ->name('subscriptions.index');
+
+    Route::post('/account/subscriptions/portal',[SubscriptionController::class, 'redirectToPortal'])
+         ->name('subscriptions.portal');
+});
+
 Route::post('/stripe/webhook', [CustomStripeWebhookController::class, 'handleWebhook']);
 
 

@@ -72,6 +72,45 @@ class CustomStripeWebhookController extends CashierController
         }
 
         // responder 200 a Stripe
+       
         return response('OK', 200);
     }
+
+     // 1) Abre tu CustomStripeWebhookController
+
+public function handleCustomerSubscriptionDeleted(array $payload)
+{
+    // 2) Datos básicos que vienen en el webhook
+    $stripeId  = $payload['data']['object']['customer'] ?? null;          // cliente Stripe
+    $periodEnd = $payload['data']['object']['current_period_end'] ?? 0;   // fin de periodo (timestamp)
+
+    // 3) Encuentra al usuario de tu base de datos
+    $user = \App\Models\User::where('stripe_id', $stripeId)->first();
+
+    // 4) Guarda un log para que veas que funciona
+    \Log::info('Subscripción eliminada', [
+        'stripe_id'  => $stripeId,
+        'period_end' => $periodEnd,
+    ]);
+
+    // 5) Si el usuario existe y aún tiene saldo, lo ponemos a 0
+    if ($user && $user->credits_balance > 0) {
+
+        // 5.a) Creamos una transacción negativa para dejar rastro
+        \App\Models\CreditTransaction::create([
+            'user_id'   => $user->id,
+            'amount'    => -$user->credits_balance, // restamos TODO
+            'type'      => 'expiration',
+            'reference' => $payload['id'],          // id único del evento Stripe
+        ]);
+
+        // 5.b) Actualizamos el saldo del usuario
+        $user->credits_balance = 0;
+        $user->save();
+    }
+
+    // 6) Dejamos que Cashier haga lo suyo
+    return parent::handleCustomerSubscriptionDeleted($payload);
+}
+
 }
