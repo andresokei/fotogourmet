@@ -603,25 +603,7 @@
         
 
         <!-- Galería de imágenes procesadas -->
-        @if(isset($gallery) && $gallery->count())
-            <div class="mt-16">
-                <h3 class="gallery-title">Tus imágenes procesadas</h3>
-                <div class="gallery-grid">
-                    @foreach($gallery as $img)
-                        <div class="gallery-card">
-                            <a href="{{ asset('storage/' . $img->processed_path) }}" target="_blank">
-                                <img src="{{ asset('storage/' . $img->processed_path) }}" alt="Imagen procesada" class="gallery-image">
-                            </a>
-                            <div class="gallery-date">
-                                Procesada el {{ $img->created_at->format('d/m/Y H:i') }}
-                            </div>
-                            <a href="{{ asset('storage/' . $img->processed_path) }}" download class="btn-gold mt-2 inline-block text-sm w-full">Descargar</a>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        @endif
-
+       
         <!-- Testimonio -->
         <div class="mt-16 text-sm text-neutral-400 italic text-center">
             “Pensaba que era IA genérica… pero me entregaron una imagen digna de portada. — Chef María A.”

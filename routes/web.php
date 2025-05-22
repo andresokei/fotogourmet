@@ -4,11 +4,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\ImageUploadController;
+use App\Http\Controllers\GalleryController;
 use App\Livewire\Dashboard\Main;
 use App\Models\User;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\CustomStripeWebhookController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -16,31 +16,20 @@ use App\Http\Controllers\CustomStripeWebhookController;
 |--------------------------------------------------------------------------
 */
 
+// Landing page (público)
+Route::view('/', 'landing')->name('home');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/account/subscriptions',        [SubscriptionController::class, 'index'])
-         ->name('subscriptions.index');
-
-    Route::post('/account/subscriptions/portal',[SubscriptionController::class, 'redirectToPortal'])
-         ->name('subscriptions.portal');
-});
-
-Route::post('/stripe/webhook', [CustomStripeWebhookController::class, 'handleWebhook']);
-
-
-Route::view('/', 'landing');
-
-// Dashboard (Livewire)
+// Dashboard (Livewire) - requiere autenticación y verificación
 Route::get('/dashboard', Main::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-// Perfil (opcional si aún no lo usas)
+// Perfil - requiere autenticación
 Route::view('/profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-// Login con Google
+// Rutas de autenticación con Google
 Route::get('/auth/redirect/google', function () {
     return Socialite::driver('google')->redirect();
 })->name('google.redirect');
@@ -61,32 +50,41 @@ Route::get('/auth/callback/google', function () {
     return redirect('/dashboard');
 })->name('google.callback');
 
-// Subida de imágenes sin Livewire
+// Grupo de rutas para usuarios autenticados
 Route::middleware(['auth'])->group(function () {
+    
+    // Subida de imágenes
     Route::get('/upload', [ImageUploadController::class, 'show'])->name('upload.show');
     Route::post('/upload', [ImageUploadController::class, 'store'])->name('upload.store');
+    
+    // Galería de imágenes
+    Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+    Route::delete('/gallery/{id}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
+    Route::get('/gallery/filter', [GalleryController::class, 'filter'])->name('gallery.filter');
+    
+    // Rutas de suscripciones organizadas
+    Route::prefix('subscriptions')->name('subscriptions.')->group(function () {
+        Route::get('/', [SubscriptionController::class, 'index'])->name('index');
+        Route::get('/plans', [SubscriptionController::class, 'showPlans'])->name('plans');
+        Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
+        Route::post('/portal', [SubscriptionController::class, 'redirectToPortal'])->name('portal');
+        Route::get('/success', [SubscriptionController::class, 'success'])->name('success');
+        Route::get('/cancel', [SubscriptionController::class, 'cancel'])->name('cancel');
+    });
 });
 
+// Webhook de Stripe (sin autenticación por diseño)
+Route::post('/stripe/webhook', [CustomStripeWebhookController::class, 'handleWebhook'])
+    ->name('stripe.webhook');
 
-
-// Auth routes generadas por Breeze
+// Rutas de autenticación generadas por Breeze
 require __DIR__ . '/auth.php';
 
-Route::get('/a-ver', function () {
-    return ini_get('max_execution_time');
-});
-
-Route::get('/php-ini-path', function () {
-    return php_ini_loaded_file();
-});
-
-
-
-Route::middleware('auth')->group(function () {
-    Route::get('/subscriptions/plans', [SubscriptionController::class, 'showPlans'])->name('subscriptions.plans');
-    Route::post('/subscriptions/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscriptions.subscribe');
-    Route::get('/subscriptions/success', [SubscriptionController::class, 'success'])->name('subscriptions.success');
-    Route::get('/subscriptions/cancel', [SubscriptionController::class, 'cancel'])->name('subscriptions.cancel');
-});
-
-
+// NOTA: Las siguientes rutas de debugging deben eliminarse en producción
+// Route::get('/a-ver', function () {
+//     return ini_get('max_execution_time');
+// });
+// 
+// Route::get('/php-ini-path', function () {
+//     return php_ini_loaded_file();
+// });
