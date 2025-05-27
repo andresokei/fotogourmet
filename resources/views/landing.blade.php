@@ -878,7 +878,7 @@
 
 <section class="gallery-section">
     <div class="gallery-header">
-        <h2 class="gallery-title">Galería de transformaciones</h2>
+        <h2 class="gallery-title">Tu competencia ya nos usa</h2>
         <p class="gallery-subtitle">
             Observa la diferencia que marca nuestra tecnología de fotografía gastronómica profesional. 
             Desliza para comparar las imágenes originales con nuestras versiones premium.
@@ -975,7 +975,7 @@
     </div>
     
     <div class="call-to-action">
-        <a href="#" class="btn-gallery-action"><i class="fas fa-cloud-upload-alt"></i>Transforma tus fotos ahora</a>
+        <a href="{{ route('login') }}" class="btn-gallery-action"><i class="fas fa-cloud-upload-alt"></i>Transforma tus fotos ahora</a>
         <p class="gallery-note">Más de 500 restaurantes ya utilizan nuestro servicio para mejorar sus ventas</p>
     </div>
 </section>
@@ -1116,618 +1116,240 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
  <!-- FIN GALERIA -->
- <style>
-.how-it-works-section {
-    background-color: #000000;
-    padding: 6rem 0;
-    position: relative;
-    overflow: hidden;
-}
+  <!-- INICIO SECCION COMO USAR -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cómo funciona - Simplificado</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --white-primary: #ffffff;
+            --black-primary: #000000;
+            --gold-primary: #d4af37;
+            --gold-light: #f4d03f;
+            --gray-light: #b8b8b8;
+        }
 
-.how-it-works-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='rgba(255,255,255,0.02)' fill-opacity='0.02' fill-rule='evenodd'/%3E%3C/svg%3E");
-    z-index: 0;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.works-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    position: relative;
-    z-index: 1;
-}
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
 
-.works-header {
-    text-align: center;
-    margin-bottom: 5rem;
-}
+        .how-it-works-section {
+            background-color: #000000;
+            padding: 4rem 0;
+            color: white;
+        }
 
-.works-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3.4rem;
-    font-weight: 400;
-    color: var(--white-primary);
-    margin-bottom: 1.5rem;
-    position: relative;
-    display: inline-block;
-}
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-.works-title::after {
-    content: '';
-    position: absolute;
-    bottom: -0.8rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 2px;
-    background: var(--gold-primary);
-}
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
 
-.works-subtitle {
-    font-size: 1.1rem;
-    max-width: 650px;
-    margin: 0 auto;
-    color: var(--gray-light);
-    line-height: 1.8;
-    font-weight: 300;
-}
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--white-primary);
+        }
 
-.process-steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    margin-bottom: 4rem;
-    position: relative;
-}
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
 
-@media (max-width: 992px) {
-    .process-steps {
-        grid-template-columns: 1fr;
-        gap: 4rem;
-    }
-}
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
 
-.process-step {
-    text-align: center;
-    position: relative;
-}
+        .step {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(20, 20, 20, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
 
-.step-number {
-    position: absolute;
-    top: -15px;
-    right: 20px;
-    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
-    color: var(--black-primary);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    font-size: 0.9rem;
-    z-index: 2;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-}
+        .step:hover {
+            border-color: var(--gold-primary);
+            transform: translateY(-5px);
+        }
 
-.step-icon-container {
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
-    border: 2px solid rgba(212, 175, 55, 0.3);
-    border-radius: 50%;
-    margin: 0 auto 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    transition: all 0.3s ease;
-}
+        .step-number {
+            background: var(--gold-primary);
+            color: var(--black-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
 
-.step-icon-container:hover {
-    transform: translateY(-5px);
-    border-color: rgba(212, 175, 55, 0.6);
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
-}
+        .step-icon {
+            font-size: 2rem;
+            color: var(--gold-primary);
+            margin-bottom: 1rem;
+        }
 
-.step-icon {
-    font-size: 2.5rem;
-    color: var(--gold-primary);
-}
+        .step-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--white-primary);
+        }
 
-.step-title {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: var(--white-primary);
-    margin-bottom: 1rem;
-    font-family: 'Montserrat', sans-serif;
-}
+        .step-description {
+            font-size: 0.95rem;
+            color: var(--gray-light);
+            line-height: 1.5;
+        }
 
-.step-description {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--gray-light);
-    margin-bottom: 1.5rem;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-}
+        .styles-preview {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
 
-.step-highlight {
-    background: rgba(212, 175, 55, 0.1);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: 6px;
-    padding: 0.8rem 1.2rem;
-    font-size: 0.9rem;
-    color: var(--gold-primary);
-    font-weight: 500;
-    margin-top: 1rem;
-}
+        .style-badge {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            color: var(--gold-primary);
+        }
 
-.styles-showcase {
-    background: rgba(10, 10, 10, 0.6);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    border-radius: 12px;
-    padding: 2.5rem;
-    margin: 3rem 0;
-    position: relative;
-}
+        .cta-section {
+            text-align: center;
+            margin-top: 2rem;
+        }
 
-.styles-title {
-    text-align: center;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--white-primary);
-    margin-bottom: 2rem;
-}
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+            color: var(--black-primary);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
 
-.styles-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-}
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
 
-@media (max-width: 768px) {
-    .styles-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-}
+        .note {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray-light);
+            font-style: italic;
+        }
 
-.style-option {
-    background: rgba(20, 20, 20, 0.8);
-    border: 1px solid rgba(212, 175, 55, 0.15);
-    border-radius: 8px;
-    padding: 1.5rem;
-    text-align: center;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
+        /* Responsive */
+        @media (max-width: 768px) {
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
 
-.style-option:hover {
-    border-color: rgba(212, 175, 55, 0.4);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
+            .section-title {
+                font-size: 2rem;
+            }
 
-.style-option.active {
-    border-color: var(--gold-primary);
-    background: rgba(212, 175, 55, 0.08);
-}
-
-.style-emoji {
-    font-size: 2.5rem;
-    margin-bottom: 0.8rem;
-    display: block;
-}
-
-.style-name {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--white-primary);
-    margin-bottom: 0.5rem;
-}
-
-.style-description {
-    font-size: 0.9rem;
-    color: var(--gray-light);
-    line-height: 1.5;
-}
-
-.processing-animation {
-    text-align: center;
-    margin: 2rem 0;
-    padding: 1.5rem;
-    background: rgba(5, 5, 5, 0.5);
-    border-radius: 8px;
-    border: 1px solid rgba(212, 175, 55, 0.1);
-}
-
-.processing-text {
-    color: var(--gold-primary);
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    font-weight: 500;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 4px;
-    background: rgba(40, 40, 40, 1);
-    border-radius: 2px;
-    overflow: hidden;
-    margin-bottom: 0.8rem;
-}
-
-.progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--gold-primary) 0%, var(--gold-light) 100%);
-    width: 0%;
-    border-radius: 2px;
-    animation: progress 2s ease-in-out infinite;
-}
-
-@keyframes progress {
-    0% { width: 0%; }
-    50% { width: 70%; }
-    100% { width: 100%; }
-}
-
-.time-indicator {
-    font-size: 0.9rem;
-    color: var(--gray-light);
-    font-weight: 500;
-}
-
-.use-cases {
-    margin-top: 3rem;
-    text-align: center;
-}
-
-.use-cases-title {
-    font-size: 1.2rem;
-    color: var(--white-primary);
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-}
-
-.use-cases-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.use-case {
-    background: rgba(15, 15, 15, 0.7);
-    border: 1px solid rgba(212, 175, 55, 0.15);
-    border-radius: 6px;
-    padding: 1rem;
-    transition: all 0.3s ease;
-}
-
-.use-case:hover {
-    border-color: rgba(212, 175, 55, 0.3);
-    transform: translateY(-2px);
-}
-
-.use-case-icon {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.use-case-text {
-    font-size: 0.9rem;
-    color: var(--gray-light);
-    font-weight: 500;
-}
-
-.works-cta {
-    text-align: center;
-    margin-top: 4rem;
-}
-
-.btn-works-action {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
-    border: none;
-    color: var(--black-primary);
-    border-radius: 2px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
-    text-decoration: none;
-}
-
-.btn-works-action:hover {
-    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 70%, var(--gold-primary) 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35);
-}
-
-.btn-works-action i {
-    margin-right: 8px;
-}
-
-.works-note {
-    margin-top: 1.5rem;
-    font-size: 0.9rem;
-    color: var(--gold-primary);
-    opacity: 0.85;
-    font-weight: 300;
-    font-style: italic;
-    letter-spacing: 0.5px;
-}
-
-/* Conectores entre pasos mejorados y simplificados (solo en desktop) */
-@media (min-width: 993px) {
-    .process-step:not(:last-child)::after {
-        content: '';
-        position: absolute;
-        top: 60px;
-        right: -2.2rem;
-        width: 4.4rem;
-        height: 2px;
-        background: linear-gradient(90deg, 
-            var(--gold-primary) 0%, 
-            var(--gold-primary) 85%,
-            transparent 100%);
-        z-index: 1;
-    }
-    
-    .process-step:not(:last-child)::before {
-        content: '';
-        position: absolute;
-        top: 55px;
-        right: -1.8rem;
-        width: 0;
-        height: 0;
-        border-left: 10px solid var(--gold-primary);
-        border-top: 5px solid transparent;
-        border-bottom: 5px solid transparent;
-        z-index: 2;
-    }
-    
-    /* Animación sutil al hover */
-    .process-step:hover::after {
-        background: linear-gradient(90deg, 
-            var(--gold-light) 0%, 
-            var(--gold-light) 85%,
-            transparent 100%);
-    }
-    
-    .process-step:hover::before {
-        border-left-color: var(--gold-light);
-    }
-}
-
-@media (max-width: 768px) {
-    .works-title {
-        font-size: 2.8rem;
-    }
-    
-    .works-subtitle {
-        font-size: 1rem;
-    }
-    
-    .step-icon-container {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .step-icon {
-        font-size: 2rem;
-    }
-    
-    .step-title {
-        font-size: 1.2rem;
-    }
-    
-    .styles-showcase {
-        padding: 1.5rem;
-    }
-    
-    .style-emoji {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .works-title {
-        font-size: 2.4rem;
-    }
-    
-    .process-steps {
-        gap: 3rem;
-    }
-    
-    .step-description {
-        font-size: 0.95rem;
-    }
-}
-</style>
-
-<section class="how-it-works-section">
-    <div class="works-container">
-        <div class="works-header">
-            <h2 class="works-title">Cómo funciona</h2>
-            <p class="works-subtitle">
-                Transformar tus fotos gastronómicas es tan simple como subir, elegir y descargar. 
-                Sin conocimientos técnicos, sin equipos costosos, solo resultados profesionales.
-            </p>
-        </div>
-        
-        <div class="process-steps">
-            <!-- Paso 1 -->
-            <div class="process-step">
-                <div class="step-number">1</div>
-                <div class="step-icon-container">
-                    <i class="fas fa-mobile-alt step-icon"></i>
-                </div>
-                <h3 class="step-title">Sube cualquier foto que tengas</h3>
-                <p class="step-description">
-                    Usa fotos que ya tienes en Google Maps, redes sociales o toma nuevas con tu smartphone. 
-                    No necesitas equipos profesionales.
+            .styles-preview {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="how-it-works-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Cómo funciona</h2>
+                <p class="section-subtitle">
+                    Transforma tus fotos gastronómicas en 3 simples pasos. 
+                    Sin conocimientos técnicos, sin equipos costosos.
                 </p>
-                <div class="step-highlight">
-                    <i class="fas fa-check-circle" style="margin-right: 0.5rem;"></i>
-                    Funciona incluso con fotos de baja calidad
-                </div>
             </div>
             
-            <!-- Paso 2 -->
-            <div class="process-step">
-                <div class="step-number">2</div>
-                <div class="step-icon-container">
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <i class="fas fa-upload step-icon"></i>
+                    <h3 class="step-title">Sube tu foto</h3>
+                    <p class="step-description">
+                        Usa cualquier foto que tengas: del móvil, redes sociales o Google Maps. 
+                        Funciona incluso con fotos de baja calidad.
+                    </p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
                     <i class="fas fa-magic step-icon"></i>
-                </div>
-                <h3 class="step-title">Selecciona el estilo perfecto</h3>
-                <p class="step-description">
-                    Escoge entre nuestros estilos predefinidos y nuestra IA transformará tu imagen.
-                </p>
-                
-                <div class="styles-showcase">
-                    <h4 class="styles-title">Estilos disponibles:</h4>
-                    <div class="styles-grid">
-                        <div class="style-option active">
-                            <span class="style-emoji">🍽️</span>
-                            <div class="style-name">Alta Cocina</div>
-                            <div class="style-description">Elegante, sofisticado, presentación de restaurante fine dining</div>
-                        </div>
-                        <div class="style-option">
-                            <span class="style-emoji">🏠</span>
-                            <div class="style-name">Rústico</div>
-                            <div class="style-description">Casero, acogedor, estilo tradicional y familiar</div>
-                        </div>
-                        <div class="style-option">
-                            <span class="style-emoji">✨</span>
-                            <div class="style-name">Luminoso</div>
-                            <div class="style-description">Fresco, vibrante, perfecto para redes sociales y delivery</div>
-                        </div>
-                    </div>
+                    <h3 class="step-title">Elige tu estilo</h3>
+                    <p class="step-description">
+                        Selecciona entre nuestros estilos profesionales: Alta Cocina, Rústico o Luminoso. 
+                        La IA transformará tu imagen en menos de 2 minutos.
+                    </p>
                 </div>
                 
-                <div class="processing-animation">
-                    <div class="processing-text">
-                        <i class="fas fa-cog fa-spin" style="margin-right: 0.5rem;"></i>
-                        IA procesando tu imagen...
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                    <div class="time-indicator">Listo en menos de 2 minutos</div>
-                </div>
-            </div>
-            
-            <!-- Paso 3 -->
-            <div class="process-step">
-                <div class="step-number">3</div>
-                <div class="step-icon-container">
+                <div class="step">
+                    <div class="step-number">3</div>
                     <i class="fas fa-download step-icon"></i>
-                </div>
-                <h3 class="step-title">Descarga y úsala donde quieras</h3>
-                <p class="step-description">
-                    Obtén tu imagen transformada en alta resolución, lista para tu carta, redes sociales, 
-                    web o apps de delivery.
-                </p>
-                <div class="step-highlight">
-                    <i class="fas fa-hd-video" style="margin-right: 0.5rem;"></i>
-                    Optimizada para impresión, web y redes sociales
+                    <h3 class="step-title">Descarga y usa</h3>
+                    <p class="step-description">
+                        Obtén tu imagen profesional en alta resolución, 
+                        lista para cartas, webs, redes sociales y delivery.
+                    </p>
                 </div>
             </div>
-        </div>
-        
-        <div class="use-cases">
-            <h3 class="use-cases-title">Perfecta para usar en:</h3>
-            <div class="use-cases-grid">
-                <div class="use-case">
-                    <span class="use-case-icon">🗺️</span>
-                    <div class="use-case-text">Google Maps Business</div>
-                </div>
-                <div class="use-case">
-                    <span class="use-case-icon">🛵</span>
-                    <div class="use-case-text">Glovo, Uber Eats, Just Eat</div>
-                </div>
-                <div class="use-case">
-                    <span class="use-case-icon">📱</span>
-                    <div class="use-case-text">Instagram, Facebook</div>
-                </div>
-                <div class="use-case">
-                    <span class="use-case-icon">🌐</span>
-                    <div class="use-case-text">Web del restaurante</div>
-                </div>
-                <div class="use-case">
-                    <span class="use-case-icon">📋</span>
-                    <div class="use-case-text">Cartas impresas</div>
-                </div>
-                <div class="use-case">
-                    <span class="use-case-icon">📺</span>
-                    <div class="use-case-text">Pantallas digitales</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="works-cta">
-            <a href="{{ route('login') }}" class="btn-works-action">
-                <i class="fas fa-rocket"></i>Prueba gratis ahora
-            </a>
-            <p class="works-note">No necesitas tarjeta de crédito para empezar</p>
-        </div>
-    </div>
-</section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Hacer los estilos clickeables
-    const styleOptions = document.querySelectorAll('.style-option');
-    
-    styleOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            // Remover clase activa de todas las opciones
-            styleOptions.forEach(opt => opt.classList.remove('active'));
-            // Agregar clase activa a la opción seleccionada
-            this.classList.add('active');
             
-            // Opcional: mostrar algún feedback visual adicional
-            const emoji = this.querySelector('.style-emoji');
-            emoji.style.transform = 'scale(1.2)';
-            setTimeout(() => {
-                emoji.style.transform = 'scale(1)';
-            }, 200);
-        });
-    });
-    
-    // Animación de hover para los pasos
-    const stepContainers = document.querySelectorAll('.step-icon-container');
-    
-    stepContainers.forEach(container => {
-        container.addEventListener('mouseenter', function() {
-            const icon = this.querySelector('.step-icon');
-            icon.style.transform = 'scale(1.1) rotate(5deg)';
-            icon.style.transition = 'transform 0.3s ease';
-        });
-        
-        container.addEventListener('mouseleave', function() {
-            const icon = this.querySelector('.step-icon');
-            icon.style.transform = 'scale(1) rotate(0deg)';
-        });
-    });
-});
-</script>
+            <div class="cta-section">
+                <a href="{{ route('login') }}" class="btn-primary">
+                    <i class="fas fa-rocket" style="margin-right: 8px;"></i>
+                    Prueba gratis ahora
+                </a>
+                <p class="note">No necesitas tarjeta de crédito para empezar</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
 <!-- --fin seccion como usar -->
 
 
@@ -2162,9 +1784,9 @@ document.addEventListener('DOMContentLoaded', function() {
 <section class="roi-section">
     <div class="roi-container">
         <div class="roi-header">
-            <h2 class="roi-title">Fotografía profesional a una fracción del coste</h2>
+            <h2 class="roi-title">Fotografía profesional por una fracción del coste</h2>
             <p class="roi-subtitle">
-                Compara y descubre cuánto puedes ahorrar con ChefSnap respecto a otros métodos de fotografía gastronómica.
+                Descubre cuánto puedes ahorrar con ChefSnap respecto a otros métodos de fotografía gastronómica.
             </p>
         </div>
         
@@ -2301,9 +1923,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         <div class="roi-cta">
             <a href="{{ route('subscriptions.plans') }}" class="btn-roi-action">
-                <i class="fas fa-bolt"></i>Comienza a ahorrar ahora
+                <i class="fas fa-bolt"></i>Pruebalo Gratis Ahora
             </a>
-            <p class="roi-guarantee">7 días de prueba gratuita · Garantía de satisfacción · Sin permanencia</p>
+            <p class="roi-guarantee">2 créditos gratis · Sin Tarjeta · Sin permanencia</p>
         </div>
     </div>
 </section>
@@ -2378,7 +2000,7 @@ document.addEventListener('DOMContentLoaded', function() {
         riquinPrice.textContent = '€' + precioRiquinMensual.toFixed(2).replace('.', ',');
         
         // Calcular y mostrar ahorro (comparado con profesional)
-        let ahorroPorcentaje = Math.round(((precioProTotal - precioRiquinTotal) / precioProTotal) * 100);
+        let ahorroPorcentaje = Math.floor(((precioProTotal - precioRiquinTotal) / precioProTotal) * 100);
         let ahorroAbsoluto = precioProTotal - precioRiquinTotal;
         
         savingsValue.textContent = ahorroPorcentaje + '%';
@@ -2643,7 +2265,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-<div class="premium-section"> 
+<!-- <div class="premium-section"> 
     <h2 class="premium-title">Elige tu Plan</h2>
     <div class="premium-subtitle">
         Llévate fotos irresistibles para tu carta, RRSS o delivery.<br>
@@ -2751,7 +2373,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <a href="{{ route('login') }}" class="btn-free-trial">Comenzar prueba gratuita</a>
         <p class="free-trial-info">Prueba gratis durante 7 días con 3 créditos</p>
     </div>
-</div>
+</div> -->
 
 
 </x-app-layout>

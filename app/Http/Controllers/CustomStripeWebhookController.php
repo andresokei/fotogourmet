@@ -44,22 +44,12 @@ class CustomStripeWebhookController extends CashierController
                 };
 
                 if ($creditsToAdd > 0) {
-                    // 1. sumar saldo
-                    $user->credits_balance += $creditsToAdd;
-                    $user->save();
-
-                    // 2. registrar la recarga (evitar duplicados)
                     $eventId = $payload['id'];
 
+                    // Evitar duplicados
                     if (! CreditTransaction::where('reference', $eventId)->exists()) {
-                        CreditTransaction::create([
-                            'user_id'           => $user->id,
-                            'amount'            => $creditsToAdd,
-                            'type'              => 'subscription',
-                            'reference'         => $eventId,
-                            'expires_at'        => null,
-                            'expired_processed' => false,
-                        ]);
+                        $user->adjustCredits($creditsToAdd, 'subscription', $eventId);
+                        // Si necesitas expires_at o expired_processed, puedes actualizar el último registro aquí.
                     }
 
                     Log::info('Créditos sumados', [
@@ -72,45 +62,27 @@ class CustomStripeWebhookController extends CashierController
         }
 
         // responder 200 a Stripe
-       
         return response('OK', 200);
     }
 
-     // 1) Abre tu CustomStripeWebhookController
+    /** Subscripción eliminada */
+    public function handleCustomerSubscriptionDeleted(array $payload)
+    {
+        $stripeId  = $payload['data']['object']['customer'] ?? null;          // cliente Stripe
+        $periodEnd = $payload['data']['object']['current_period_end'] ?? 0;   // fin de periodo (timestamp)
 
-public function handleCustomerSubscriptionDeleted(array $payload)
-{
-    // 2) Datos básicos que vienen en el webhook
-    $stripeId  = $payload['data']['object']['customer'] ?? null;          // cliente Stripe
-    $periodEnd = $payload['data']['object']['current_period_end'] ?? 0;   // fin de periodo (timestamp)
+        $user = User::where('stripe_id', $stripeId)->first();
 
-    // 3) Encuentra al usuario de tu base de datos
-    $user = \App\Models\User::where('stripe_id', $stripeId)->first();
-
-    // 4) Guarda un log para que veas que funciona
-    \Log::info('Subscripción eliminada', [
-        'stripe_id'  => $stripeId,
-        'period_end' => $periodEnd,
-    ]);
-
-    // 5) Si el usuario existe y aún tiene saldo, lo ponemos a 0
-    if ($user && $user->credits_balance > 0) {
-
-        // 5.a) Creamos una transacción negativa para dejar rastro
-        \App\Models\CreditTransaction::create([
-            'user_id'   => $user->id,
-            'amount'    => -$user->credits_balance, // restamos TODO
-            'type'      => 'expiration',
-            'reference' => $payload['id'],          // id único del evento Stripe
+        Log::info('Subscripción eliminada', [
+            'stripe_id'  => $stripeId,
+            'period_end' => $periodEnd,
         ]);
 
-        // 5.b) Actualizamos el saldo del usuario
-        $user->credits_balance = 0;
-        $user->save();
+        if ($user && $user->credits_balance > 0) {
+            $user->adjustCredits(-$user->credits_balance, 'expiration', $payload['id']);
+        }
+
+        // Dejamos que Cashier haga lo suyo
+        return parent::handleCustomerSubscriptionDeleted($payload);
     }
-
-    // 6) Dejamos que Cashier haga lo suyo
-    return parent::handleCustomerSubscriptionDeleted($payload);
-}
-
 }

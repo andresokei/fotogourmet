@@ -300,7 +300,7 @@
                 <div class="actions-container">
                     @if ($sub)
                         <!-- Manage Subscription -->
-                        <form method="POST" action="{{ route('subscriptions.portal') }}">
+                        <form method="GET" action="{{ route('subscriptions.portal') }}">
                             @csrf
                             <button type="submit" class="btn-premium">
                                 <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">

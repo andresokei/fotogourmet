@@ -151,9 +151,37 @@
     <div class="relative max-w-3xl mx-auto z-10">
 
         <!-- Créditos disponibles -->
-        <div class="credits-box">
-            Créditos disponibles: <span class="font-bold">{{ $user->credits_balance }}</span>
-        </div>
+        <!-- Opción 1: Botón pequeño y minimalista -->
+<!-- <div class="credits-box">
+    Créditos disponibles: <span class="font-bold">{{ $user->credits_balance }}</span>
+    <a href="" class="ml-2 text-yellow-400 hover:text-yellow-300 text-sm underline transition-colors duration-200">
+        + Comprar
+    </a>
+</div> -->
+
+<!-- Opción 2: Icono sutil -->
+<!-- 
+<div class="credits-box">
+    <div class="flex items-center">
+        <span>Créditos disponibles: <span class="font-bold">{{ $user->credits_balance }}</span></span>
+        <a href="" class="ml-2 text-yellow-400 hover:text-yellow-300 transition-colors duration-200" title="Comprar más créditos">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"/>
+            </svg>
+        </a>
+    </div>
+</div>
+-->
+
+<!-- Opción 3: Texto simple -->
+
+<!-- Créditos disponibles con emoji -->
+<div class="credits-box">
+    Créditos disponibles: <span class="font-bold">{{ $user->credits_balance }}</span> • 
+    <a href="" class="hover:scale-110 transition-transform duration-200" title="Comprar más créditos">
+        ➕
+    </a>
+</div>
 
         <!-- Título principal -->
         <h1 class="main-title">Editor de Fotografía <span class="gold">Gastronómica</span></h1>

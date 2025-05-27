@@ -5,35 +5,59 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
+use Livewire\Form;
 
-new #[Layout('layouts.guest')] class extends Component
+// Form class inline
+class RegisterForm extends Form
 {
     public string $name = '';
     public string $email = '';
     public string $password = '';
     public string $password_confirmation = '';
 
+    public function rules(): array
+    {
+        return [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
+            'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+        ];
+    }
+
+    public function store(): void
+    {
+        $this->validate();
+
+        $user = User::create([
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => Hash::make($this->password),
+        ]);
+
+        event(new Registered($user));
+
+        Auth::login($user);
+    }
+}
+
+new #[Layout('layouts.guest')] class extends Component
+{
+    public RegisterForm $form;
+
     /**
      * Handle an incoming registration request.
      */
     public function register(): void
     {
-        $validated = $this->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-        ]);
+        $this->form->store();
 
-        $validated['password'] = Hash::make($validated['password']);
+        Session::regenerate();
 
-        event(new Registered($user = User::create($validated)));
-
-        Auth::login($user);
-
-        $this->redirect(RouteServiceProvider::HOME, navigate: true);
+        $this->redirectIntended(default: RouteServiceProvider::HOME, navigate: true);
     }
 }; ?>
 
@@ -239,47 +263,47 @@ a:hover {
     <form wire:submit="register">
         <!-- Name -->
         <div class="form-group">
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name" placeholder="Tu nombre completo" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2 error-text" />
+            <x-input-label for="name" :value="__('Nombre')" />
+            <x-text-input wire:model="form.name" id="name" class="block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name" placeholder="Tu nombre completo" />
+            <x-input-error :messages="$errors->get('form.name')" class="mt-2 error-text" />
         </div>
 
         <!-- Email Address -->
         <div class="form-group">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autocomplete="username" placeholder="tu@email.com" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2 error-text" />
+            <x-text-input wire:model="form.email" id="email" class="block mt-1 w-full" type="email" name="email" required autocomplete="username" placeholder="tu@email.com" />
+            <x-input-error :messages="$errors->get('form.email')" class="mt-2 error-text" />
         </div>
 
         <!-- Password -->
         <div class="form-group">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input wire:model="password" id="password" class="block mt-1 w-full"
+            <x-input-label for="password" :value="__('Contraseña')" />
+            <x-text-input wire:model="form.password" id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
                             required autocomplete="new-password" 
                             placeholder="••••••••" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2 error-text" />
+            <x-input-error :messages="$errors->get('form.password')" class="mt-2 error-text" />
         </div>
 
         <!-- Confirm Password -->
         <div class="form-group">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full"
+            <x-input-label for="password_confirmation" :value="__('Confirmar Contraseña')" />
+            <x-text-input wire:model="form.password_confirmation" id="password_confirmation" class="block mt-1 w-full"
                             type="password"
                             name="password_confirmation" required autocomplete="new-password" 
                             placeholder="••••••••" />
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 error-text" />
+            <x-input-error :messages="$errors->get('form.password_confirmation')" class="mt-2 error-text" />
         </div>
 
         <!-- Actions -->
         <div class="actions-container">
             <a href="{{ route('login') }}" wire:navigate>
-                {{ __('Already registered?') }}
+                {{ __('¿Ya tienes cuenta?') }}
             </a>
 
             <x-primary-button>
-                {{ __('Register') }}
+                {{ __('Registrarse') }}
             </x-primary-button>
         </div>
     </form>

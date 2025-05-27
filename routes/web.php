@@ -46,9 +46,21 @@ Route::get('/auth/callback/google', function () {
         ]
     );
 
+    // Marcar email como verificado si no lo está
+    if (is_null($user->email_verified_at)) {
+        $user->email_verified_at = now();
+        $user->save();
+    }
+
+    if ($user->wasRecentlyCreated) {
+        $user->adjustCredits(2, 'welcome');
+    }
+
     Auth::login($user);
     return redirect('/dashboard');
-})->name('google.callback');
+});
+
+
 
 // Grupo de rutas para usuarios autenticados
 Route::middleware(['auth'])->group(function () {
@@ -67,7 +79,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [SubscriptionController::class, 'index'])->name('index');
         Route::get('/plans', [SubscriptionController::class, 'showPlans'])->name('plans');
         Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
-        Route::post('/portal', [SubscriptionController::class, 'redirectToPortal'])->name('portal');
+        Route::get('/portal', [SubscriptionController::class, 'redirectToPortal'])->name('portal');
         Route::get('/success', [SubscriptionController::class, 'success'])->name('success');
         Route::get('/cancel', [SubscriptionController::class, 'cancel'])->name('cancel');
     });

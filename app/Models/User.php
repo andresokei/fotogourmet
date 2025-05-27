@@ -8,9 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Cashier\Billable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail 
 {
     use HasApiTokens, HasFactory, Notifiable;
     use Billable;
@@ -46,4 +47,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function adjustCredits(int $amount, string $type = 'manual', ?string $reference = null)
+{
+    \DB::transaction(function () use ($amount, $type, $reference) {
+        $this->credits_balance += $amount;
+        $this->save();
+
+        \App\Models\CreditTransaction::create([
+            'user_id'   => $this->id,
+            'amount'    => $amount,
+            'type'      => $type,
+            'reference' => $reference ?? uniqid($type . '_'),
+        ]);
+    });
+}
+
 }

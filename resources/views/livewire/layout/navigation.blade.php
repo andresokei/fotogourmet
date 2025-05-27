@@ -37,7 +37,7 @@ new class extends Component
                                     style="color: #eee8c3; font-weight: 500; font-size: 0.9rem; letter-spacing: 0.5px; padding: 0.75rem 1.25rem; border-radius: 0.5rem; transition: all 0.3s ease; {{ request()->routeIs('dashboard') ? 'color: #d4af37; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.3);' : '' }}"
                                     onmouseover="this.style.color='#d4af37'; this.style.background='rgba(212,175,55,0.08)'; this.style.transform='translateY(-1px)';"
                                     onmouseout="this.style.color='{{ request()->routeIs('dashboard') ? '#d4af37' : '#eee8c3' }}'; this.style.background='{{ request()->routeIs('dashboard') ? 'rgba(212,175,55,0.15)' : 'transparent' }}'; this.style.transform='translateY(0)';">
-                            {{ __('Dashboard') }}
+                            {{ __('Editor') }}
                         </x-nav-link>
                         
                         <x-nav-link :href="route('gallery.index')" :active="request()->routeIs('gallery.*')" wire:navigate
@@ -122,7 +122,7 @@ new class extends Component
                                style="color: #eee8c3; font-weight: 500; font-size: 0.9rem; letter-spacing: 0.5px; padding: 0.5rem 1rem; border-radius: 0.5rem; transition: all 0.3s ease; text-decoration: none;"
                                onmouseover="this.style.color='#d4af37'; this.style.background='rgba(212,175,55,0.1)'; this.style.transform='translateY(-1px)';"
                                onmouseout="this.style.color='#eee8c3'; this.style.background='transparent'; this.style.transform='translateY(0)';">
-                                {{ __('Register') }}
+                                <!-- {{ __('Register') }} -->
                             </a>
                         @endif
                     </div>
@@ -153,7 +153,7 @@ new class extends Component
                                       style="color: #eee8c3; font-weight: 500; padding: 0.75rem 1rem; border-radius: 0.5rem; margin: 0.25rem 1rem; transition: all 0.3s ease; border-left: 3px solid {{ request()->routeIs('dashboard') ? '#d4af37' : 'transparent' }}; {{ request()->routeIs('dashboard') ? 'color: #d4af37; background: rgba(212,175,55,0.15);' : '' }}"
                                       onmouseover="this.style.color='#d4af37'; this.style.background='rgba(212,175,55,0.1)'; this.style.borderLeftColor='#d4af37'; this.style.transform='translateX(5px)';"
                                       onmouseout="this.style.color='{{ request()->routeIs('dashboard') ? '#d4af37' : '#eee8c3' }}'; this.style.background='{{ request()->routeIs('dashboard') ? 'rgba(212,175,55,0.15)' : 'transparent' }}'; this.style.borderLeftColor='{{ request()->routeIs('dashboard') ? '#d4af37' : 'transparent' }}'; this.style.transform='translateX(0)';">
-                    {{ __('Dashboard') }}
+                    {{ __('Editor') }}
                 </x-responsive-nav-link>
                 
                 <x-responsive-nav-link :href="route('gallery.index')" :active="request()->routeIs('gallery.*')" wire:navigate
@@ -223,7 +223,7 @@ new class extends Component
                                           style="color: #eee8c3; font-weight: 500; padding: 0.75rem 1rem; border-radius: 0.5rem; margin: 0.25rem 1rem; transition: all 0.3s ease; border-left: 3px solid transparent;"
                                           onmouseover="this.style.color='#d4af37'; this.style.background='rgba(212,175,55,0.1)'; this.style.borderLeftColor='#d4af37'; this.style.transform='translateX(5px)';"
                                           onmouseout="this.style.color='#eee8c3'; this.style.background='transparent'; this.style.borderLeftColor='transparent'; this.style.transform='translateX(0)';">
-                        {{ __('Register') }}
+                        <!-- {{ __('Register') }} -->
                     </x-responsive-nav-link>
                 @endif
             </div>
