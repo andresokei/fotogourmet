@@ -481,9 +481,9 @@
                         <a href="{{ route('login') }}" class="btn-upload">
                             <i class="fas fa-cloud-upload-alt"></i>Transformar imagen
                         </a>
-                        <button class="btn-examples">
+                        <!-- <button class="btn-examples">
                             <i class="fas fa-images"></i>Galería Premium
-                        </button>
+                        </button> -->
                     </div>
                 <p class="simple-text">Sin equipos
                     costosos. Sin sesiones fotográficas. Resultados inmediatos.</p>
@@ -886,15 +886,15 @@
     </div>
 
     <div class="gallery-grid">
-        <!-- Item 1: Plato Gourmet -->
+        <!-- Item 1: Burger -->
         <div class="gallery-item">
-            <div class="dish-name">Plato Gourmet</div>
+            <div class="dish-name">Burguer Gourmet</div>
             <div class="img-comp-container">
                 <div class="img-comp-img">
-                    <img src="/img/plato-despues.png" alt="Plato gourmet premium">
+                    <img src="/img/burguer-despues.jpg" alt="Plato gourmet premium">
                 </div>
                 <div class="img-comp-img img-comp-overlay">
-                    <img src="/img/plato-antes.png" alt="Plato gourmet original">
+                    <img src="/img/burguer-antes.jpg" alt="Plato gourmet original">
                 </div>
                 <div class="img-comp-slider">
                     <div class="img-comp-handle">
@@ -928,16 +928,58 @@
                 <div class="vignette"></div>
             </div>
         </div>
-
-        <!-- Item 3: Tosta -->
+<!-- Item 3: Plato Gourmet -->
         <div class="gallery-item">
-            <div class="dish-name">Tosta Gourmet</div>
+            <div class="dish-name">Pasteles Gourmet</div>
             <div class="img-comp-container">
                 <div class="img-comp-img">
-                    <img src="/img/tosta-despues.png" alt="Tosta premium">
+                    <img src="/img/pasteles-despues.jpg" alt="Plato gourmet premium">
                 </div>
                 <div class="img-comp-img img-comp-overlay">
-                    <img src="/img/tosta-antes.png" alt="Tosta original">
+                    <img src="/img/pasteles-antes.jpg" alt="Plato gourmet original">
+                </div>
+                <div class="img-comp-slider">
+                    <div class="img-comp-handle">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="before-label">Original</div>
+                <div class="after-label">Premium</div>
+                <div class="vignette"></div>
+            </div>
+        </div>
+
+        <!-- Item 4: Avocado Toast -->
+        <div class="gallery-item">
+            <div class="dish-name">Tosta de Aguacate</div>
+            <div class="img-comp-container">
+                <div class="img-comp-img">
+                    <img src="/img/avocado-despues.jpg" alt="avocado premium">
+                </div>
+                <div class="img-comp-img img-comp-overlay">
+                    <img src="/img/avocado-antes.jpg" alt="avocado original">
+                </div>
+                <div class="img-comp-slider">
+                    <div class="img-comp-handle">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="before-label">Original</div>
+                <div class="after-label">Premium</div>
+                <div class=""></div>
+                <div class="vignette"></div>
+            </div>
+        </div>
+
+        <!-- Item 3: tartar -->
+        <div class="gallery-item">
+            <div class="dish-name">Tartar </div>
+            <div class="img-comp-container">
+                <div class="img-comp-img">
+                    <img src="/img/tartar-despues.png" alt="tartar premium">
+                </div>
+                <div class="img-comp-img img-comp-overlay">
+                    <img src="/img/tartar-antes.png" alt="tartar original">
                 </div>
                 <div class="img-comp-slider">
                     <div class="img-comp-handle">
@@ -951,15 +993,15 @@
             </div>
         </div>
         
-        <!-- Item 4: Fajita -->
+        <!-- Item 4: gambas -->
         <div class="gallery-item">
-            <div class="dish-name">Fajitas Mexicanas</div>
+            <div class="dish-name">Gambass al ajillo</div>
             <div class="img-comp-container">
                 <div class="img-comp-img">
-                    <img src="/img/fajita-despues.png" alt="Fajitas premium">
+                    <img src="/img/gambas-despues.png" alt="gambass premium">
                 </div>
                 <div class="img-comp-img img-comp-overlay">
-                    <img src="/img/fajita-antes.png" alt="Fajitas original">
+                    <img src="/img/gambas-antes.png" alt="gambass original">
                 </div>
                 <div class="img-comp-slider">
                     <div class="img-comp-handle">

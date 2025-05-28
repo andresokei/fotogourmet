@@ -178,7 +178,7 @@
 <!-- Créditos disponibles con emoji -->
 <div class="credits-box">
     Créditos disponibles: <span class="font-bold">{{ $user->credits_balance }}</span> • 
-    <a href="" class="hover:scale-110 transition-transform duration-200" title="Comprar más créditos">
+    <a href="/subscriptions/plans" class="hover:scale-110 transition-transform duration-200" title="Comprar más créditos">
         ➕
     </a>
 </div>
