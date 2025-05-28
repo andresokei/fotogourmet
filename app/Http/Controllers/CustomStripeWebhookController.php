@@ -10,6 +10,17 @@ use Log;
 
 class CustomStripeWebhookController extends CashierController
 {
+    protected array $priceMap;
+
+    public function __construct()
+    {
+        $this->priceMap = [
+            env('PRICE_STARTER')  => 30,
+            env('PRICE_PRO')      => 90,
+            env('PRICE_BUSINESS') => 220,
+        ];
+    }
+
     /** Punto de entrada para todos los webhooks */
     public function handleWebhook(Request $request)
     {
@@ -17,7 +28,6 @@ class CustomStripeWebhookController extends CashierController
             'event' => $request->get('type'),
         ]);
 
-        // delega en Cashier, que llamará a handleInvoicePaymentSucceeded
         return parent::handleWebhook($request);
     }
 
@@ -35,21 +45,13 @@ class CustomStripeWebhookController extends CashierController
             $subscription = $user->subscription('default');
 
             if ($subscription) {
-                /* Créditos según plan */
-                $creditsToAdd = match ($subscription->stripe_price) {
-                    'price_1RRAsyIS4HW9Ci3k6n3UqifP' => 30,
-                    'price_1RRAtKIS4HW9Ci3krTmIdYFk' => 90,
-                    'price_1RRB5zIS4HW9Ci3k4B25VHlP' => 220,
-                    default => 0,
-                };
+                $creditsToAdd = $this->priceMap[$subscription->stripe_price] ?? 0;
 
                 if ($creditsToAdd > 0) {
                     $eventId = $payload['id'];
 
-                    // Evitar duplicados
                     if (! CreditTransaction::where('reference', $eventId)->exists()) {
                         $user->adjustCredits($creditsToAdd, 'subscription', $eventId);
-                        // Si necesitas expires_at o expired_processed, puedes actualizar el último registro aquí.
                     }
 
                     Log::info('Créditos sumados', [
@@ -61,15 +63,14 @@ class CustomStripeWebhookController extends CashierController
             }
         }
 
-        // responder 200 a Stripe
         return response('OK', 200);
     }
 
     /** Subscripción eliminada */
     public function handleCustomerSubscriptionDeleted(array $payload)
     {
-        $stripeId  = $payload['data']['object']['customer'] ?? null;          // cliente Stripe
-        $periodEnd = $payload['data']['object']['current_period_end'] ?? 0;   // fin de periodo (timestamp)
+        $stripeId  = $payload['data']['object']['customer'] ?? null;
+        $periodEnd = $payload['data']['object']['current_period_end'] ?? 0;
 
         $user = User::where('stripe_id', $stripeId)->first();
 
@@ -82,7 +83,6 @@ class CustomStripeWebhookController extends CashierController
             $user->adjustCredits(-$user->credits_balance, 'expiration', $payload['id']);
         }
 
-        // Dejamos que Cashier haga lo suyo
         return parent::handleCustomerSubscriptionDeleted($payload);
     }
 }
