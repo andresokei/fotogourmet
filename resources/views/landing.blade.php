@@ -473,13 +473,13 @@
                     segundos.
                 </h1>
                 <p class="hero-text">
-                    Eleva la presencia digital de tu restaurante con imágenes de calidad editorial.
-                    Transforma fotografías estándar en obras de arte gastronómicas con nuestra tecnología exclusiva.
-                </p>
+     Eleva la presencia digital de tu restaurante con imágenes de calidad profesional. Transforma fotografías estándar en obras de arte gastronómicas con nuestra tecnología exclusiva.
+</p>
+
                  <!--  botón  -->
                     <div class="hero-buttons">
                         <a href="{{ route('login') }}" class="btn-upload">
-                            <i class="fas fa-cloud-upload-alt"></i>Transformar imagen
+                            <i class="fas fa-cloud-upload-alt shine-text"></i>Probar gratis
                         </a>
                         <!-- <button class="btn-examples">
                             <i class="fas fa-images"></i>Galería Premium
@@ -511,9 +511,9 @@
             </div>
         </div>
 
-        <div class="upgrade-banner">
+        <!-- <div class="upgrade-banner">
             <span class="shine-text">ChefSnap</span> — Fotografía gastronómica en segundos
-        </div>
+        </div> -->
     </div>
 
     <script>
@@ -878,10 +878,13 @@
 
 <section class="gallery-section">
     <div class="gallery-header">
-        <h2 class="gallery-title">Tu competencia ya nos usa</h2>
+        <h2 class="gallery-title">El 93% de los clientes decide con los ojos.</h2>
         <p class="gallery-subtitle">
-            Observa la diferencia que marca nuestra tecnología de fotografía gastronómica profesional. 
-            Desliza para comparar las imágenes originales con nuestras versiones premium.
+             <p class="section-text">
+    Ese restaurante que siempre está lleno también invierte en cómo se ve online.
+</p>
+
+
         </p>
     </div>
 
@@ -1148,7 +1151,7 @@
     </div>
     
     <div class="call-to-action">
-        <a href="{{ route('login') }}" class="btn-gallery-action"><i class="fas fa-cloud-upload-alt"></i>Transforma tus fotos ahora</a>
+        <a href="{{ route('login') }}" class="btn-gallery-action "><i class="fas fa-cloud-upload-alt shine-text"></i>Transforma tus fotos ahora</a>
         <p class="gallery-note">Más de 500 restaurantes ya utilizan nuestro servicio para mejorar sus ventas</p>
     </div>
 </section>
@@ -1514,7 +1517,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <div class="cta-section">
                 <a href="{{ route('login') }}" class="btn-primary">
-                    <i class="fas fa-rocket" style="margin-right: 8px;"></i>
+                    <i class="fas fa-rocket shine-text" style="margin-right: 8px;"></i>
                     Prueba gratis ahora
                 </a>
                 <p class="note">No necesitas tarjeta de crédito para empezar</p>
@@ -2096,7 +2099,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         <div class="roi-cta">
             <a href="{{ route('subscriptions.plans') }}" class="btn-roi-action">
-                <i class="fas fa-bolt"></i>Pruebalo Gratis Ahora
+                <i class="fas fa-bolt shine-text"></i>Pruebalo Gratis Ahora
             </a>
             <p class="roi-guarantee">2 créditos gratis · Sin Tarjeta · Sin permanencia</p>
         </div>
