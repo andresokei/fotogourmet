@@ -13,11 +13,11 @@ class SubscriptionController extends Controller
     $sub  = $user->subscriptions()->latest()->first();   // nos quedamos con la más nueva
 
     // Mapa PriceID → Nombre comercial
-    $labels = [
-        'price_1RRAsyIS4HW9Ci3k6n3UqifP' => 'Starter',
-        'price_1RRAtKIS4HW9Ci3krTmIdYFk' => 'Pro',
-        'price_1RRB5zIS4HW9Ci3k4B25VHlP' => 'Business',
-    ];
+   $labels = [
+    env('PRICE_STARTER') => 'Starter',
+    env('PRICE_PRO') => 'Pro',
+    env('PRICE_BUSINESS') => 'Business',
+];
 
     // Calculamos el label (o null)
     $planLabel = $sub?->stripe_price ? ($labels[$sub->stripe_price] ?? $sub->stripe_price) : null;
@@ -54,10 +54,10 @@ class SubscriptionController extends Controller
     public function showPlans()
     {
         $plans = [
-            ['name' => 'Starter',  'price_id' => 'price_1RRAsyIS4HW9Ci3k6n3UqifP', 'price' =>  9.90],
-            ['name' => 'Pro',      'price_id' => 'price_1RRAtKIS4HW9Ci3krTmIdYFk', 'price' => 29.90],
-            ['name' => 'Business', 'price_id' => 'price_1RRB5zIS4HW9Ci3k4B25VHlP', 'price' => 49.00],
-        ];
+    ['name' => 'Starter',  'price_id' => env('PRICE_STARTER'), 'price' =>  9.90],
+    ['name' => 'Pro',      'price_id' => env('PRICE_PRO'), 'price' => 29.90],
+    ['name' => 'Business', 'price_id' => env('PRICE_BUSINESS'), 'price' => 49.00],
+];
         return view('subscriptions.plans', compact('plans'));
     }
 
