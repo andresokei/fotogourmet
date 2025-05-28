@@ -633,9 +633,9 @@
         <!-- Galería de imágenes procesadas -->
        
         <!-- Testimonio -->
-        <div class="mt-16 text-sm text-neutral-400 italic text-center">
+        <!-- <div class="mt-16 text-sm text-neutral-400 italic text-center">
             “Pensaba que era IA genérica… pero me entregaron una imagen digna de portada. — Chef María A.”
-        </div>
+        </div> -->
 
     </div> <!-- FIN del contenedor principal -->
 

@@ -1152,7 +1152,7 @@
     
     <div class="call-to-action">
         <a href="{{ route('login') }}" class="btn-gallery-action "><i class="fas fa-cloud-upload-alt shine-text"></i>Transforma tus fotos ahora</a>
-        <p class="gallery-note">Haz que tus platos destaquen en redes sociales y multiplica tus ventas.</p>
+        <p class="gallery-note">Haz que tus platos destaquen en redes sociales, google maps, carta online... y multiplica tus ventas.</p>
     </div>
 </section>
 
