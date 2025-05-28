@@ -1,13 +1,5 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use Laravel\Cashier\Http\Controllers\WebhookController as CashierController;
-use App\Models\User;
-use App\Models\CreditTransaction;
-use Log;
-
 class CustomStripeWebhookController extends CashierController
 {
     protected array $priceMap;
@@ -21,7 +13,6 @@ class CustomStripeWebhookController extends CashierController
         ];
     }
 
-    /** Punto de entrada para todos los webhooks */
     public function handleWebhook(Request $request)
     {
         Log::info('ENTRA EN HANDLEWEBHOOK', [
@@ -31,29 +22,25 @@ class CustomStripeWebhookController extends CashierController
         return parent::handleWebhook($request);
     }
 
-    /** Suscripción pagada con éxito */
     public function handleInvoicePaymentSucceeded($payload)
     {
         Log::info('Webhook recibido correctamente', [
             'stripe_id' => $payload['data']['object']['customer'] ?? null,
         ]);
 
-        $stripeId = $payload['data']['object']['customer'] ?? null;
-        $user     = User::where('stripe_id', $stripeId)->first();
+        $stripeData = $payload['data']['object'] ?? [];
+        $stripeId   = $stripeData['customer'] ?? null;
+        $user       = User::where('stripe_id', $stripeId)->first();
 
         if ($user) {
             $subscription = $user->subscription('default');
-
             if ($subscription) {
                 $creditsToAdd = $this->priceMap[$subscription->stripe_price] ?? 0;
-
                 if ($creditsToAdd > 0) {
                     $eventId = $payload['id'];
-
-                    if (! CreditTransaction::where('reference', $eventId)->exists()) {
+                    if (!CreditTransaction::where('reference', $eventId)->exists()) {
                         $user->adjustCredits($creditsToAdd, 'subscription', $eventId);
                     }
-
                     Log::info('Créditos sumados', [
                         'user_id'       => $user->id,
                         'credits_added' => $creditsToAdd,
@@ -66,11 +53,11 @@ class CustomStripeWebhookController extends CashierController
         return response('OK', 200);
     }
 
-    /** Subscripción eliminada */
     public function handleCustomerSubscriptionDeleted(array $payload)
     {
-        $stripeId  = $payload['data']['object']['customer'] ?? null;
-        $periodEnd = $payload['data']['object']['current_period_end'] ?? 0;
+        $stripeData = $payload['data']['object'] ?? [];
+        $stripeId   = $stripeData['customer'] ?? null;
+        $periodEnd  = $stripeData['current_period_end'] ?? null;
 
         $user = User::where('stripe_id', $stripeId)->first();
 
@@ -80,9 +67,13 @@ class CustomStripeWebhookController extends CashierController
         ]);
 
         if ($user && $user->credits_balance > 0) {
-            $user->adjustCredits(-$user->credits_balance, 'expiration', $payload['id']);
+            $user->adjustCredits(-abs($user->credits_balance), 'expiration', $payload['id']);
         }
 
+        // Opcional: Si quieres usar la lógica de Cashier:
         return parent::handleCustomerSubscriptionDeleted($payload);
+
+        // O, si prefieres controlar el 200:
+        // return response('OK', 200);
     }
 }
