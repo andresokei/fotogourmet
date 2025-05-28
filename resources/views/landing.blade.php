@@ -1,17 +1,5 @@
 <x-app-layout>
-    <!-- Open Graph / Facebook / WhatsApp -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://chefsnap.app/">
-<meta property="og:title" content="ChefSnap - Transforma tus fotos gastronómicas al instante">
-<meta property="og:description" content="Haz que tus platos brillen en Instagram, Google Maps y tu carta digital. Impulsa las ventas con imágenes irresistibles.">
-<meta property="og:image" content="https://chefsnap.app/img/preview.jpg">
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="https://chefsnap.app/">
-<meta name="twitter:title" content="ChefSnap - Transforma tus fotos gastronómicas al instante">
-<meta name="twitter:description" content="Haz que tus platos brillen en Instagram, Google Maps y tu carta digital. Impulsa las ventas con imágenes irresistibles.">
-<meta name="twitter:image" content="https://chefsnap.app/img/preview.jpg">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
