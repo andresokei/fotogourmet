@@ -32,6 +32,18 @@ new #[Layout('layouts.guest')] class extends Component
     --gold-dark: #9c7c21;
 }
 
+/* Contenedor principal con márgenes móviles - más específico */
+form {
+    margin: 0 1rem;
+    box-sizing: border-box;
+}
+
+/* También aplicar a session status */
+.session-status {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
 /* Mejoras para los inputs */
 input[type="email"], 
 input[type="password"] {
@@ -159,7 +171,28 @@ a:hover {
     margin-top: 1.5rem;
 }
 
+/* Responsive mejorado con márgenes */
+@media (max-width: 768px) {
+    form {
+        margin: 0 1.5rem;
+    }
+    
+    .session-status {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
+}
+
 @media (max-width: 480px) {
+    form {
+        margin: 0 1.25rem;
+    }
+    
+    .session-status {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+    }
+    
     .actions-container {
         flex-direction: column;
         gap: 1rem;
@@ -168,6 +201,17 @@ a:hover {
     
     button[type="submit"] {
         width: 100%;
+    }
+}
+
+@media (max-width: 360px) {
+    form {
+        margin: 0 1rem;
+    }
+    
+    .session-status {
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
 }
 </style>

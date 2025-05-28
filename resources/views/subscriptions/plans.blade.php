@@ -201,8 +201,8 @@
                                 $defaultCredits = ['Starter'=>30,'Pro'=>90,'Business'=>220];
                                 $features = $plan['features'] ?? [
                                     ($defaultCredits[$plan['name']] ?? 0) . ' créditos/mes',
-                                    'Calidad profesional IA',
-                                    ($index>0? 'Descarga HD ilimitada':'Descarga básica'),
+                                    'Calidad profesional',
+                                    ($index>0? 'Descarga HD ilimitada':'Descarga HD ilimitada'),
                                     ($index==2? 'Soporte prioritario':'')
                                 ];
                             @endphp

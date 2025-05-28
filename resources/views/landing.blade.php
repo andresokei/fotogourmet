@@ -502,8 +502,8 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </div>
-                        <div class="before-label">Original</div>
-                        <div class="after-label">Premium</div>
+                        <!-- <div class="before-label">Antes</div>
+                        <div class="after-label">Después</div> -->
                         <div class=""></div>
                         <div class="vignette"></div>
                     </div>
@@ -891,7 +891,7 @@
     <div class="gallery-grid">
         <!-- Item 1: Burger -->
         <div class="gallery-item">
-            <div class="dish-name">Burguer Gourmet</div>
+            <!-- <div class="dish-name">Burguer Gourmet</div> -->
             <div class="img-comp-container">
                 <div class="img-comp-img">
                     <img src="/img/burguer-despues.jpg" alt="Plato gourmet premium">
@@ -904,15 +904,15 @@
                         <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
-                <div class="before-label">Original</div>
-                <div class="after-label">Premium</div>
+                <!-- <div class="before-label">Antes</div>
+                <div class="after-label">Después</div> -->
                 <div class="vignette"></div>
             </div>
         </div>
 
         <!-- Item 2: Tarta -->
         <div class="gallery-item">
-            <div class="dish-name">Tarta de Chocolate</div>
+            <!-- <div class="dish-name">Tarta de Chocolate</div> -->
             <div class="img-comp-container">
                 <div class="img-comp-img">
                     <img src="/img/tarta-despues.png" alt="Tarta premium">
@@ -925,15 +925,15 @@
                         <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
-                <div class="before-label">Original</div>
-                <div class="after-label">Premium</div>
+                <!-- <div class="before-label">Antes</div>
+                <div class="after-label">Después</div> -->
                 <div class=""></div>
                 <div class="vignette"></div>
             </div>
         </div>
 <!-- Item 3: Plato Gourmet -->
         <div class="gallery-item">
-            <div class="dish-name">Pasteles Gourmet</div>
+            <!-- <div class="dish-name">Pasteles Gourmet</div> -->
             <div class="img-comp-container">
                 <div class="img-comp-img">
                     <img src="/img/pasteles-despues.jpg" alt="Plato gourmet premium">
@@ -946,15 +946,15 @@
                         <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
-                <div class="before-label">Original</div>
-                <div class="after-label">Premium</div>
+                <!-- <div class="before-label">Antes</div>
+                <div class="after-label">Después</div> -->
                 <div class="vignette"></div>
             </div>
         </div>
 
         <!-- Item 4: Avocado Toast -->
         <div class="gallery-item">
-            <div class="dish-name">Tosta de Aguacate</div>
+            <!-- <div class="dish-name">Tosta de Aguacate</div> -->
             <div class="img-comp-container">
                 <div class="img-comp-img">
                     <img src="/img/avocado-despues.jpg" alt="avocado premium">
@@ -967,8 +967,8 @@
                         <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
-                <div class="before-label">Original</div>
-                <div class="after-label">Premium</div>
+                <!-- <div class="before-label">Antes</div>
+                <div class="after-label">Después</div> -->
                 <div class=""></div>
                 <div class="vignette"></div>
             </div>
@@ -976,7 +976,7 @@
 
         <!-- Item 3: tartar -->
         <div class="gallery-item">
-            <div class="dish-name">Tartar </div>
+            <!-- <div class="dish-name">Tartar </div> -->
             <div class="img-comp-container">
                 <div class="img-comp-img">
                     <img src="/img/tartar-despues.png" alt="tartar premium">
@@ -989,8 +989,8 @@
                         <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
-                <div class="before-label">Original</div>
-                <div class="after-label">Premium</div>
+                <!-- <div class="before-label">Antes</div>
+                <div class="after-label">Después</div> -->
                 <div class=""></div>
                 <div class="vignette"></div>
             </div>
@@ -998,7 +998,7 @@
         
         <!-- Item 4: gambas -->
         <div class="gallery-item">
-            <div class="dish-name">Gambass al ajillo</div>
+            <!-- <div class="dish-name">Gambass al ajillo</div> -->
             <div class="img-comp-container">
                 <div class="img-comp-img">
                     <img src="/img/gambas-despues.png" alt="gambass premium">
@@ -1011,8 +1011,8 @@
                         <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
-                <div class="before-label">Original</div>
-                <div class="after-label">Premium</div>
+                <!-- <div class="before-label">Antes</div>
+                <div class="after-label">Después</div> -->
                 <div class=""></div>
                 <div class="vignette"></div>
             </div>
@@ -1022,7 +1022,7 @@
 
         <!-- Item 7: Langostino -->
         <div class="gallery-item">
-            <div class="dish-name">langostino Gourmet</div>
+            <!-- <div class="dish-name">langostino Gourmet</div> -->
             <div class="img-comp-container">
                 <div class="img-comp-img">
                     <img src="/img/langostino-despues.jpg" alt="Plato gourmet premium">
@@ -1035,15 +1035,15 @@
                         <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
-                <div class="before-label">Original</div>
-                <div class="after-label">Premium</div>
+                <!-- <div class="before-label">Antes</div>
+                <div class="after-label">Después</div> -->
                 <div class="vignette"></div>
             </div>
         </div>
 
         <!-- Item 8: rollitos -->
         <div class="gallery-item">
-            <div class="dish-name">Rollitos</div>
+            <!-- <div class="dish-name">Rollitos</div> -->
             <div class="img-comp-container">
                 <div class="img-comp-img">
                     <img src="/img/rollitos-despues.jpg" alt="rollitos premium">
@@ -1056,15 +1056,15 @@
                         <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
-                <div class="before-label">Original</div>
-                <div class="after-label">Premium</div>
+                <!-- <div class="before-label">Antes</div>
+                <div class="after-label">Después</div> -->
                 <div class=""></div>
                 <div class="vignette"></div>
             </div>
         </div>
 <!-- Item 9: pasteleria Gourmet -->
         <div class="gallery-item">
-            <div class="dish-name">pasteleria Gourmet</div>
+            <!-- <div class="dish-name">pasteleria Gourmet</div> -->
             <div class="img-comp-container">
                 <div class="img-comp-img">
                     <img src="/img/pasteleria-despues.jpg" alt="Plato gourmet premium">
@@ -1077,15 +1077,15 @@
                         <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
-                <div class="before-label">Original</div>
-                <div class="after-label">Premium</div>
+                <!-- <div class="before-label">Antes</div>
+                <div class="after-label">Después</div> -->
                 <div class="vignette"></div>
             </div>
         </div>
 
         <!-- Item 10: Bowl -->
         <div class="gallery-item">
-            <div class="dish-name">Bowl</div>
+            <!-- <div class="dish-name">Bowl</div> -->
             <div class="img-comp-container">
                 <div class="img-comp-img">
                     <img src="/img/bowl-despues.jpg" alt="bowl premium">
@@ -1098,8 +1098,8 @@
                         <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
-                <div class="before-label">Original</div>
-                <div class="after-label">Premium</div>
+                <!-- <div class="before-label">Antes</div>
+                <div class="after-label">Después</div> -->
                 <div class=""></div>
                 <div class="vignette"></div>
             </div>
@@ -1107,7 +1107,7 @@
 
         <!-- Item 11: Burguer 2 -->
         <div class="gallery-item">
-            <div class="dish-name">Burguer </div>
+            <!-- <div class="dish-name">Burguer </div> -->
             <div class="img-comp-container">
                 <div class="img-comp-img">
                     <img src="/img/burguer2-despues.jpg" alt="burguer2 premium">
@@ -1120,8 +1120,8 @@
                         <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
-                <div class="before-label">Original</div>
-                <div class="after-label">Premium</div>
+                <!-- <div class="before-label">Antes</div>
+                <div class="after-label">Después</div> -->
                 <div class=""></div>
                 <div class="vignette"></div>
             </div>
@@ -1129,7 +1129,7 @@
         
         <!-- Item 12: tarta queso -->
         <div class="gallery-item">
-            <div class="dish-name">Tarta de queso</div>
+            <!-- <div class="dish-name">Tarta de queso</div> -->
             <div class="img-comp-container">
                 <div class="img-comp-img">
                     <img src="/img/tartaqueso-despues.png" alt="tarta queso premium">
@@ -1142,8 +1142,8 @@
                         <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
-                <div class="before-label">Original</div>
-                <div class="after-label">Premium</div>
+                <!-- <div class="before-label">Antes</div>
+                <div class="after-label">Después</div> -->
                 <div class=""></div>
                 <div class="vignette"></div>
             </div>
@@ -2098,7 +2098,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         
         <div class="roi-cta">
-            <a href="{{ route('subscriptions.plans') }}" class="btn-roi-action">
+            <a href="{{ route('login') }}" class="btn-roi-action">
                 <i class="fas fa-bolt shine-text"></i>Pruebalo Gratis Ahora
             </a>
             <p class="roi-guarantee">2 créditos gratis · Sin Tarjeta · Sin permanencia</p>
