@@ -1014,6 +1014,137 @@
                 <div class="vignette"></div>
             </div>
         </div>
+
+        <!-- otros 6  -->
+
+        <!-- Item 7: Langostino -->
+        <div class="gallery-item">
+            <div class="dish-name">langostino Gourmet</div>
+            <div class="img-comp-container">
+                <div class="img-comp-img">
+                    <img src="/img/langostino-despues.jpg" alt="Plato gourmet premium">
+                </div>
+                <div class="img-comp-img img-comp-overlay">
+                    <img src="/img/langostino-antes.jpg" alt="Plato gourmet original">
+                </div>
+                <div class="img-comp-slider">
+                    <div class="img-comp-handle">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="before-label">Original</div>
+                <div class="after-label">Premium</div>
+                <div class="vignette"></div>
+            </div>
+        </div>
+
+        <!-- Item 8: rollitos -->
+        <div class="gallery-item">
+            <div class="dish-name">Rollitos</div>
+            <div class="img-comp-container">
+                <div class="img-comp-img">
+                    <img src="/img/rollitos-despues.jpg" alt="rollitos premium">
+                </div>
+                <div class="img-comp-img img-comp-overlay">
+                    <img src="/img/rollitos-antes.jpg" alt="rollitos original">
+                </div>
+                <div class="img-comp-slider">
+                    <div class="img-comp-handle">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="before-label">Original</div>
+                <div class="after-label">Premium</div>
+                <div class=""></div>
+                <div class="vignette"></div>
+            </div>
+        </div>
+<!-- Item 9: pasteleria Gourmet -->
+        <div class="gallery-item">
+            <div class="dish-name">pasteleria Gourmet</div>
+            <div class="img-comp-container">
+                <div class="img-comp-img">
+                    <img src="/img/pasteleria-despues.jpg" alt="Plato gourmet premium">
+                </div>
+                <div class="img-comp-img img-comp-overlay">
+                    <img src="/img/pasteleria-antes.jpg" alt="Plato gourmet original">
+                </div>
+                <div class="img-comp-slider">
+                    <div class="img-comp-handle">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="before-label">Original</div>
+                <div class="after-label">Premium</div>
+                <div class="vignette"></div>
+            </div>
+        </div>
+
+        <!-- Item 10: Bowl -->
+        <div class="gallery-item">
+            <div class="dish-name">Bowl</div>
+            <div class="img-comp-container">
+                <div class="img-comp-img">
+                    <img src="/img/bowl-despues.jpg" alt="bowl premium">
+                </div>
+                <div class="img-comp-img img-comp-overlay">
+                    <img src="/img/bowl-antes.jpg" alt="bowl original">
+                </div>
+                <div class="img-comp-slider">
+                    <div class="img-comp-handle">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="before-label">Original</div>
+                <div class="after-label">Premium</div>
+                <div class=""></div>
+                <div class="vignette"></div>
+            </div>
+        </div>
+
+        <!-- Item 11: Burguer 2 -->
+        <div class="gallery-item">
+            <div class="dish-name">Burguer </div>
+            <div class="img-comp-container">
+                <div class="img-comp-img">
+                    <img src="/img/burguer2-despues.jpg" alt="burguer2 premium">
+                </div>
+                <div class="img-comp-img img-comp-overlay">
+                    <img src="/img/burguer2-antes.jpg" alt="burguer2 original">
+                </div>
+                <div class="img-comp-slider">
+                    <div class="img-comp-handle">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="before-label">Original</div>
+                <div class="after-label">Premium</div>
+                <div class=""></div>
+                <div class="vignette"></div>
+            </div>
+        </div>
+        
+        <!-- Item 12: tarta queso -->
+        <div class="gallery-item">
+            <div class="dish-name">Tarta de queso</div>
+            <div class="img-comp-container">
+                <div class="img-comp-img">
+                    <img src="/img/tartaqueso-despues.png" alt="tarta queso premium">
+                </div>
+                <div class="img-comp-img img-comp-overlay">
+                    <img src="/img/tartaqueso-antes.png" alt="tarta de quedo original">
+                </div>
+                <div class="img-comp-slider">
+                    <div class="img-comp-handle">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="before-label">Original</div>
+                <div class="after-label">Premium</div>
+                <div class=""></div>
+                <div class="vignette"></div>
+            </div>
+        </div>
     </div>
     
     <div class="call-to-action">
