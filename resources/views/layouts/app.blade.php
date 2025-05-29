@@ -27,7 +27,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
-    </head>
+    
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9XXLGG97ZJ"></script>
 <script>
@@ -37,6 +37,8 @@
 
   gtag('config', 'G-9XXLGG97ZJ');
 </script>
+    </head>
+    
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             <livewire:layout.navigation />
