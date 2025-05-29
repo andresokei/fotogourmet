@@ -18,12 +18,12 @@
 <meta name="twitter:description" content="Haz que tus platos brillen en Instagram, Google Maps y tu carta digital. Impulsa las ventas con imágenes irresistibles.">
 <meta name="twitter:image" content="https://chefsnap.app/img/preview2.jpg">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
+        <!-- <title>{{ config('app.name', 'Laravel') }}</title> -->
+<title>TEST</title>
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-<title>HOLA</title>
+
         <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9XXLGG97ZJ"></script>
     <script>
