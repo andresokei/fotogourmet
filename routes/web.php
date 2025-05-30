@@ -92,11 +92,13 @@ Route::post('/stripe/webhook', [CustomStripeWebhookController::class, 'handleWeb
 // Rutas de autenticación generadas por Breeze
 require __DIR__ . '/auth.php';
 
-// NOTA: Las siguientes rutas de debugging deben eliminarse en producción
-// Route::get('/a-ver', function () {
-//     return ini_get('max_execution_time');
-// });
-// 
-// Route::get('/php-ini-path', function () {
-//     return php_ini_loaded_file();
-// });
+
+Route::middleware(['auth', 'admin'])
+     ->prefix('admin')
+     ->name('admin.')
+     ->group(function () {
+         Route::get('users', function () {
+             $users = \App\Models\User::orderBy('created_at','desc')->paginate(20);
+             return view('admin.users.index', compact('users'));
+         })->name('users.index');
+});

@@ -84,6 +84,8 @@ return [
 
     'locale' => 'en',
 
+     'admin_email' => env('ADMIN_EMAIL'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
