@@ -51,16 +51,30 @@ class SubscriptionController extends Controller
 
 
     /* ---------- tus métodos existentes ---------- */
-    public function showPlans()
-    {
-        $plans = [
-    ['name' => 'Starter',  'price_id' => env('PRICE_STARTER'), 'price' =>  9.90],
-    ['name' => 'Pro',      'price_id' => env('PRICE_PRO'), 'price' => 29.90],
-    ['name' => 'Business', 'price_id' => env('PRICE_BUSINESS'), 'price' => 49.00],
-];
-        dd($plans);
-        return view('subscriptions.plans', compact('plans'));
-    }
+   public function showPlans()
+{
+    // Hardcodeamos los price_id directamente, en lugar de usar env()
+    $plans = [
+        [
+            'name'     => 'Starter',
+            'price_id' => 'price_1RTYWIDRTrT9QEyZUcOnkpg', // tu Price ID Live de Stripe
+            'price'    => 9.90,
+        ],
+        [
+            'name'     => 'Pro',
+            'price_id' => 'price_1RTYZuIDRTrT9QEyop0iAWlpa', // otro Price ID Live
+            'price'    => 29.90,
+        ],
+        [
+            'name'     => 'Business',
+            'price_id' => 'price_1RTYaVIDRTrT9QEyKQjtjQ8N', // otro Price ID Live
+            'price'    => 49.00,
+        ],
+    ];
+
+    return view('subscriptions.plans', compact('plans'));
+}
+
 
     public function subscribe(Request $request)
     {
