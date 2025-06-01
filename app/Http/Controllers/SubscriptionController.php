@@ -57,7 +57,7 @@ class SubscriptionController extends Controller
     $plans = [
         [
             'name'     => 'Starter',
-            'price_id' => 'price_1RTYWIDRTrT9QEyZUcOnkpg', // tu Price ID Live de Stripe
+            'price_id' => 'price_1RTYYWIDRTrT9QEyZUcOnKpg', // tu Price ID Live de Stripe
             'price'    => 9.90,
         ],
         [
