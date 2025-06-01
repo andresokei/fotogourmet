@@ -62,7 +62,7 @@ class SubscriptionController extends Controller
         ],
         [
             'name'     => 'Pro',
-            'price_id' => 'price_1RTYZuIDRTrT9QEyop0iAWlpa', // otro Price ID Live
+            'price_id' => 'price_1RTYZuIDRTrT9QEyp0iAW4pa', // otro Price ID Live
             'price'    => 29.90,
         ],
         [
