@@ -58,6 +58,7 @@ class SubscriptionController extends Controller
     ['name' => 'Pro',      'price_id' => env('PRICE_PRO'), 'price' => 29.90],
     ['name' => 'Business', 'price_id' => env('PRICE_BUSINESS'), 'price' => 49.00],
 ];
+        dd($plans);
         return view('subscriptions.plans', compact('plans'));
     }
 
