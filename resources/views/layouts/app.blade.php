@@ -53,11 +53,11 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1674184579921602&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
- @if(request()->routeIs('dashboard'))
+ <!-- @if(request()->routeIs('dashboard'))
   <script>
     fbq('track', 'Lead');
   </script>
-@endif
+@endif -->
 
     </head>
     
@@ -81,5 +81,7 @@ src="https://www.facebook.com/tr?id=1674184579921602&ev=PageView&noscript=1"
             </main>
         </div>
             @livewireScripts
+            @stack('scripts')
+
     </body>
 </html>

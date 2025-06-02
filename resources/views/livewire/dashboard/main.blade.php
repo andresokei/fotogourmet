@@ -1,5 +1,15 @@
+@push('scripts')
+    @if(session('nuevo_registro_google'))
+        <script>
+            // Solo la primera vez que entra, disparo de CompleteRegistration
+                        console.log('Disparando CompleteRegistration');
+
+            fbq('track', 'CompleteRegistration');
+        </script>
+    @endif
+@endpush
 <div class="relative bg-black text-white min-h-screen py-12 px-6" style="font-family: 'Montserrat', sans-serif;">
-    <!-- Fondo sutil de puntos -->
+<!-- Fondo sutil de puntos -->
     <div style="background-image: url('data:image/svg+xml,...'); background-repeat: repeat;"></div>
 
     <style>

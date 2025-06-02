@@ -9,6 +9,8 @@ use App\Livewire\Dashboard\Main;
 use App\Models\User;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\CustomStripeWebhookController;
+use Illuminate\Support\Facades\Session;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -52,8 +54,9 @@ Route::get('/auth/callback/google', function () {
         $user->save();
     }
 
-    if ($user->wasRecentlyCreated) {
+      if ($user->wasRecentlyCreated) {
         $user->adjustCredits(2, 'welcome');
+        Session::flash('nuevo_registro_google', true);
     }
 
     Auth::login($user);
