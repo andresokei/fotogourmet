@@ -60,13 +60,16 @@ class ProcessImageJob implements ShouldQueue
                 // Modo demo
                 $base64 = base64_encode(file_get_contents(public_path('test.png')));
             } else {
-                $response = Http::timeout(120)
-                    ->withToken(config('services.openai.key'))
-                    ->attach('image', $imageFile, 'image.jpg')
-                    ->attach('prompt', $prompt)
-                    ->attach('model', 'gpt-image-1')
-                    ->attach('size', '1024x1024')
-                    ->post('https://api.openai.com/v1/images/edits');
+               $response = Http::withOptions(['debug' => true])   // vuelca cURL y headers
+    ->timeout(120)
+    ->withToken(config('services.openai.key'))
+    ->attach('image', $imageFile, 'image.jpg')
+    ->attach('prompt', $prompt)
+    ->attach('model', 'gpt-image-1')
+    ->attach('size', '1792x1024')          // o la que prefieras
+    ->attach('quality', 'high')            // <-- aquí
+    ->post('https://api.openai.com/v1/images/edits');
+
 
                 if (!$response->successful()) {
                     Log::error('OpenAI error', [
