@@ -59,7 +59,7 @@ class ProcessImageJob implements ShouldQueue
             } else {
                 $response = Http::timeout(120)
                     ->withToken(config('services.openai.key'))
-                    ->attach('image', $imagePath, 'image.jpg') // ruta del archivo
+                    ->attach('image', file_get_contents($imagePath), 'image.jpg') // ruta del archivo
                     ->attach('prompt', $prompt)
                     ->attach('model', 'gpt-image-1')
                     ->attach('size', '1536x1024') // resolución máxima permitida  // resolución alta
