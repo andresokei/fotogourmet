@@ -62,7 +62,7 @@ class ProcessImageJob implements ShouldQueue
                     ->attach('image', file_get_contents($imagePath), 'image.jpg') // ruta del archivo
                     ->attach('prompt', $prompt)
                     ->attach('model', 'gpt-image-1')
-                    ->attach('size', '1536x1024') // resolución máxima permitida  // resolución alta
+                    ->attach('size', '1024x1024') // resolución máxima permitida  // resolución alta
                     ->attach('quality', 'high')      // calidad alta
                     ->post('https://api.openai.com/v1/images/edits');
 
