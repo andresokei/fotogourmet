@@ -238,7 +238,7 @@
                     <!-- La imagen se insertará aquí mediante JavaScript -->
                 </div>
                 
-                <input type="file" name="image" id="image" accept="image/*" class="hidden" required>
+            <input type="file" name="image" id="image" accept="image/*" capture="environment" class="hidden" required>
             </label>
             
             <!-- Botón para eliminar la imagen (oculto inicialmente) -->
