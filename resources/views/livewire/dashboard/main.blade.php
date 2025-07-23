@@ -238,7 +238,37 @@
                     <!-- La imagen se insertará aquí mediante JavaScript -->
                 </div>
                 
-<input type="file" name="image" id="image" accept="image/*" class="hidden" required>
+<!-- Botón para usar la cámara -->
+<input 
+    type="file" 
+    accept="image/*" 
+    capture="environment" 
+    id="cameraInput" 
+    style="display: none;" 
+    onchange="handleImageUpload(this)">
+<label for="cameraInput" class="btn-gold block text-center mb-3 cursor-pointer">
+    📷 Tomar foto
+</label>
+
+<!-- Botón para abrir galería -->
+<input 
+    type="file" 
+    accept="image/*" 
+    id="galleryInput" 
+    style="display: none;" 
+    onchange="handleImageUpload(this)">
+<label for="galleryInput" class="btn-gold block text-center mb-4 cursor-pointer">
+    🖼️ Elegir de galería
+</label>
+
+<!-- Input real conectado a Livewire -->
+<input 
+    type="file" 
+    name="image" 
+    id="image" 
+    accept="image/*" 
+    class="hidden" 
+    required>
             </label>
             
             <!-- Botón para eliminar la imagen (oculto inicialmente) -->
@@ -374,7 +404,23 @@
     }
 </style>
 
+<script>
+    function handleImageUpload(sourceInput) {
+        const file = sourceInput.files[0];
+        if (!file) return;
+
+        const targetInput = document.getElementById('image');
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        targetInput.files = dt.files;
+
+        // Disparar evento de cambio para que cargue la preview
+        targetInput.dispatchEvent(new Event('change'));
+    }
+</script>
+
 <!-- Script para manejar la selección de estilo y la vista previa -->
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Elementos del DOM
